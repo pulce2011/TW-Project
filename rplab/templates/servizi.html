@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Servizi{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2>🛅 Esplora i nostri servizi 🛅</h2>
+    <p>Offriamo una vasta gamma di servizi per soddisfare le tue esigenze tecnologiche.</p>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        {% for servizio in servizi %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ servizio.nome }}</h5>
+                    <p class="card-text">{{ servizio.descrizione }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
