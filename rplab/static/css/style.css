@@ -4,3 +4,8 @@
     width: auto;
     margin: 4rem;
 }
+
+.btn-color {
+    color: red !important;
+    background-color: aquamarine;
+}

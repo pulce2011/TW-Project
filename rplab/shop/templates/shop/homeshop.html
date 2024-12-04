@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+{% endblock %}
+
+{% block content%}
+
+<!-- Hero Section -->
+<header class="hero">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Benvenuto nello Shop</h1>
+        <p class="lead">Acquista telefoni nuovi, usati e ricondizionati al miglior prezzo!</p>
+    </div>
+</header>
+
+<!-- Featured Products -->
+<section id="products" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Prodotti in Evidenza</h2>
+        <div class="row">
+            <!-- Inizio ciclo DTL -->
+            {% for prodotto in prodotti %}
+            <div class="col-md-4">
+                <div class="card product-card mb-4 shadow-sm">
+                    <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="card-img-top" alt="{{ prodotto.nome }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prodotto.nome }}</h5>
+                        <p  class="desc card-text text-muted">{{ prodotto.descrizione }}</p>
+                        <p class="fw-bold text-primary">{{ prodotto.prezzo }} €</p>
+                        <a  class="btn btn-outline-primary">Scopri di più</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Fine ciclo DTL -->
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Brand</h2>
+        <div class="row">
+            {% for brand in brands %}
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{% static 'brand/'|add:brand.immagine %}" class="card-img-top" alt="{{ brand.nome }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ brand.nome }}</h5>
+                        <a  class="btn btn-primary">Esplora</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'js/reduce_text.js' %}"></script>
+
+{% endblock %}
