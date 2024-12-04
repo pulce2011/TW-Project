@@ -20,19 +20,29 @@
         <h2 class="text-center mb-4">Prodotti in Evidenza</h2>
         <div class="row">
             <!-- Inizio ciclo DTL -->
-            {% for prodotto in prodotti %}
-            <div class="col-md-4">
-                <div class="card product-card mb-4 shadow-sm">
-                    <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="card-img-top" alt="{{ prodotto.nome }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ prodotto.nome }}</h5>
-                        <p  class="desc card-text text-muted">{{ prodotto.descrizione }}</p>
-                        <p class="fw-bold text-primary">{{ prodotto.prezzo }} €</p>
-                        <a  class="btn btn-outline-primary">Scopri di più</a>
+            {% if prodotti %}
+                {% for prodotto in prodotti %}
+                <div class="col-md-4">
+                    <div class="card product-card mb-4 shadow-sm">
+                        <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="card-img-top" alt="{{ prodotto.nome }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ prodotto.nome }}</h5>
+                            <p  class="desc card-text text-muted">{{ prodotto.descrizione }}</p>
+                            <p class="fw-bold text-primary">{{ prodotto.prezzo }} €</p>
+                            <a  class="btn btn-outline-primary">Scopri di più</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <div class="col-md">
+                    <div class="card product-card mb shadow-sm">
+                        <div class="card-body">
+                            <h2 style="text-align: center;"class="card-title">Nessuno articolo in pronta consegna.</h2>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             <!-- Fine ciclo DTL -->
         </div>
     </div>
@@ -43,17 +53,27 @@
     <div class="container">
         <h2 class="text-center mb-4">Brand</h2>
         <div class="row">
-            {% for brand in brands %}
-            <div class="col-md-3">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{% static 'brand/'|add:brand.immagine %}" class="card-img-top" alt="{{ brand.nome }}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ brand.nome }}</h5>
-                        <a  class="btn btn-primary">Esplora</a>
+            {% if brands %}
+                {% for brand in brands %}
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{% static 'brand/'|add:brand.immagine %}" class="card-img-top" alt="{{ brand.nome }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ brand.nome }}</h5>
+                            <a  class="btn btn-primary">Esplora</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <div class="col-md">
+                    <div class="card product-card mb shadow-sm">
+                        <div class="card-body">
+                            <h2 style="text-align: center;"class="card-title">Nessuno brand disponibile.</h2>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 </section>

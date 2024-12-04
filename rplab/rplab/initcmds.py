@@ -15,8 +15,8 @@ def init_database():
     
     # Inizializziamo 5 brand
     brands = {
-        "nome": ["Apple"],
-        "img": ["apple.png"],
+        "nome": ["Apple", "Samsung"],
+        "img": ["apple.png", "samsung.png"],
     }
 
     products = {
@@ -29,10 +29,20 @@ def init_database():
         "prezzo":[143.99, 216.49, 371, 283, 763.34],
         "quantita":[2, 5, 3, 1, 1],
         "condizione":["refurbished", "used", "new", "used", "new"],
+    }, {
+        "nome": ["Galaxy A52s", "Galaxy S22 Ultra", "Galaxy A12", "Galaxy Z Flip 3", "Galaxy S24 FE"],
+        "descrizione":["Samsung Galaxy A52s è un smartphone Android di buon livello, fortemente votato all'imaging, in grado di soddisfare anche l'utente più esigente. Sorprende il display Touchscreen da 6.5 pollici che pone questo Samsung al vertice della categoria. Risoluzione di 2400x1080 pixel. Scorrendo la scheda tecnica di questo Samsung Galaxy A52s, notiamo che sul versante delle funzionalità non manca davvero nulla. A cominciare dal modulo 5G che permette un trasferimento dati e una navigazione in internet eccellente, passando per la connettività Wi-fi e il GPS. Questo Samsung Galaxy A52s è un prodotto con pochi competitor per ciò che riguarda la multimedialità grazie alla fotocamera da ben 64 megapixel che permette al Samsung Galaxy A52s di scattare foto di alta qualità con una risoluzione di 9238x6928 pixel e di registrare video in 4K alla risoluzione di 3840x2160 pixel. Che dire delle dimensioni: lo spessore di 8.4mm è contenuto e rende questo Samsung Galaxy A52s molto interessante. Il suo peso è di 189g e abbiamo 4500mAh per la batteria.",
+                       "Samsung Galaxy S22 Ultra è uno smartphone Android con caratteristiche all'avanguardia che lo rendono una scelta eccellente per ogni tipo di utilizzo, rappresentando uno dei migliori dispositivi mobili mai realizzati. Dispone di un grande display da 6.8 pollici e di una risoluzione da 3080x1440 pixel, fra le più elevate attualmente in circolazione. Nello stilare la scheda tecnica di questo Samsung Galaxy S22 Ultra, notiamo che le funzionalità offerte sono innumerevoli e tutte al top di gamma. A cominciare dal modulo 5G che permette un trasferimento dati e una navigazione in internet eccellente, passando per la connettività Wi-fi e il GPS. La batteria è da 5000mAh.L'eccellenza di questo Samsung Galaxy S22 Ultra è completata da una fotocamera con un sensore da ben 108 megapixel che permette di scattare foto di alta qualità con una risoluzione di 12000x9000 pixel e di registrare video in 8K alla risoluzione di 7680x4320 pixel. Veniamo alle dimensioni: lo spessore di 8.9mm è contenuto e rende questo Samsung Galaxy S22 Ultra molto interessante. Il tutto sta in un oggetto dal peso di 229g.",
+                       "Samsung Galaxy A12 è un smartphone Android di fascia media, con una scheda tecnica ideale per chi non ha troppe pretese ma che non vuole rinunciare ad un bel display touchscreen. Le funzioni offerte da questo Samsung Galaxy A12 sono più o meno quelle presenti su tutti i dispositivi più avanzati, a cominciare dalla connettività Wi-fi e dal GPS. Al top di gamma il trasferimento dati e la navigazione in internet grazie al modulo LTE 4G. Sorprende il display Touchscreen da 6.5 pollici che pone questo Samsung al vertice della categoria. Risoluzione di 1560x720 pixel. Questo Samsung Galaxy A12 è un prodotto con pochi competitor per ciò che riguarda la multimedialità grazie alla fotocamera da ben 48 megapixel che permette al Samsung Galaxy A12 di scattare foto fantastiche con una risoluzione di 8000x6000 pixel e di registrare video in alta definizione (Full HD) alla risoluzione di 1920x1080 pixel. Facendo un check sulle dimensioni, lo spessore di 8.9mm è contenuto e rende questo Samsung Galaxy A12 molto interessante. Il suo peso è di 205g e troviamo una batteria da 5000mAh.",
+                       "Samsung Galaxy Z Flip 3 è un smartphone Android di buon livello, fortemente votato all'imaging, in grado di soddisfare anche l'utente più esigente. Sorprende il display Touchscreen da 6.7 pollici che pone questo Samsung al vertice della categoria. Risoluzione di 2640x1080 pixel. Scorrendo la scheda tecnica di questo Samsung Galaxy Z Flip 3, notiamo che sul versante delle funzionalità non manca davvero nulla. A cominciare dal modulo 5G che permette un trasferimento dati e una navigazione in internet eccellente, passando per la connettività Wi-fi e il GPS. Questo Samsung Galaxy Z Flip 3 è un prodotto con pochi competitor per ciò che riguarda la multimedialità grazie alla fotocamera da ben 12 megapixel che permette al Samsung Galaxy Z Flip 3 di scattare foto di buona qualità con una risoluzione di 4000x3000 pixel e di registrare video in 4K alla risoluzione di 3840x2160 pixel. Che dire delle dimensioni: lo spessore di appena 6.9mm rende questo Samsung Galaxy Z Flip 3 un prodotto completo e tra i più sottili sul mercato. Il suo peso è di 183g e abbiamo 3300mAh per la batteria.",
+                       "Samsung Galaxy S24 FE è uno smartphone Android con caratteristiche all'avanguardia che lo rendono una scelta eccellente per ogni tipo di utilizzo, rappresentando uno dei migliori dispositivi mobili mai realizzati. Dispone di un grande display da 6.7 pollici e di una risoluzione da 2340x1080 pixel, fra le più elevate attualmente in circolazione. Nello stilare la scheda tecnica di questo Samsung Galaxy S24 FE, notiamo che le funzionalità offerte sono innumerevoli e tutte al top di gamma. A cominciare dal modulo 5G che permette un trasferimento dati e una navigazione in internet eccellente, passando per la connettività Wi-fi e il GPS. La batteria è da 4700mAh. L'eccellenza di questo Samsung Galaxy S24 FE è completata da una fotocamera con un sensore da ben 50 megapixel che permette di scattare foto di alta qualità con una risoluzione di 8165x6124 pixel e di registrare video in 8K alla risoluzione di 7680x4320 pixel. Veniamo alle dimensioni: lo spessore di 8mm è veramente contenuto e rende questo Samsung Galaxy S24 FE ancora più spettacolare. Il tutto sta in un oggetto dal peso di 213g."],
+        "prezzo":[155, 339, 94.99, 539.99, 587.79],
+        "quantita":[0, 4, 2, 8, 3],
+        "condizione":["new", "refurbished", "used", "new", "refurbished"],
     }
 
     #Creiamo i brand e associamo il nome
-    for b in range(1):
+    for b in range(2):
         new_brand = Brand()
         new_brand.nome = brands["nome"][b]
         new_brand.immagine = brands["img"][b]
@@ -41,11 +51,11 @@ def init_database():
         #Per ciascun brand creiamo 5 prodotti
         for p in range(5):
             new_product = Prodotto()
-            new_product.nome = products["nome"][p]
-            new_product.descrizione = products["descrizione"][p]
-            new_product.prezzo = products["prezzo"][p]
-            new_product.quantita = products["quantita"][p]
-            new_product.condizione = products["condizione"][p]
+            new_product.nome = products[b]["nome"][p]
+            new_product.descrizione = products[b]["descrizione"][p]
+            new_product.prezzo = products[b]["prezzo"][p]
+            new_product.quantita = products[b]["quantita"][p]
+            new_product.condizione = products[b]["condizione"][p]
             new_product.modello = new_brand
             new_product.immagine = new_product.nome.replace(" ", "").lower()+".png"
             new_product.data_pub = timezone.now()
