@@ -1,0 +1,21 @@
+{% extends "shop/base_shop.html"%}
+
+{% block head %}
+    {% load static %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<header class="hero">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Tutti i Brand ({{tot}})</h1>
+        <p class="lead">Acquista telefoni nuovi, usati e ricondizionati al miglior prezzo!</p>
+    </div>
+</header>
+
+
+{% include 'shop/list_brand.html' %}
+
+
+{% endblock %}

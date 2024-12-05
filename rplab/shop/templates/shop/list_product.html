@@ -1,0 +1,40 @@
+{% block head %}
+    {% load static %}
+{% endblock %}
+
+<!-- Products -->
+<section id="products" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">{% block titolo_prodotti %}Prodotti: {% endblock %}</h2>
+        <div class="row">
+            <!-- Inizio ciclo DTL -->
+            {% if prodotti %}
+                {% for prodotto in prodotti %}
+                    <div class="col-md-4">
+                        <div class="card product-card mb-4 shadow-sm">
+                            <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="card-img-top" alt="{{ prodotto.nome }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ prodotto.nome }}</h5>
+                                <p class="desc card-text text-muted">{{ prodotto.descrizione }}</p>
+                                <div class="text-center">
+                                    <a href="/shop/prodotto/{{prodotto.pk}}" class="btn btn-outline-primary">Scopri di più</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md">
+                    <div class="card product-card mb shadow-sm">
+                        <div class="card-body">
+                            <h2 style="text-align: center;"class="card-title">Nessuno articolo in pronta consegna.</h2>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <!-- Fine ciclo DTL -->
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'js/reduce_text.js' %}"></script>

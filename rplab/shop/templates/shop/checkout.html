@@ -1,0 +1,56 @@
+{% extends 'shop/base_shop.html' %}
+
+{% block head %}
+    {% load static %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Riepilogo Ordine</h3>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <!-- Immagine del prodotto -->
+                        <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="img-fluid" alt="{{ prodotto.nome }}">
+                    </div>
+                    <h2 class="mb-3">Dettagli:</h4>
+                    <div class="mb-3">
+                        <strong>Prodotto:</strong> {{ prodotto.nome }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Condizione:</strong> {{ dettaglio.condizione|capfirst }} <!-- Usa capfirst per capitalizzare il nome della condizione -->
+                    </div>
+                    <div class="mb-3">
+                        <strong>Descrizione:</strong> {{ prodotto.descrizione }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Prezzo:</strong> €{{ dettaglio.prezzo }}
+                    </div>
+                    <div class="mb-3">
+                        {% if dettaglio.quantita > 0 %}
+                        <strong>Quantità disponibile:</strong> {{ dettaglio.quantita }}
+                        <div class="text-center">
+                            <a href="/shop" class="btn btn-success">Acquista</a>
+                            <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
+                        </div>
+                        {% else %}
+                        <strong>Quantità disponibile:</strong> <p style="color: red; display: inline;"> {{ dettaglio.quantita }}</div>
+                        <div class="text-center">
+                            <a class="btn btn-danger">Non disponibile</a>
+                            <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

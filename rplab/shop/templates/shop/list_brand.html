@@ -1,0 +1,33 @@
+{% block head %}
+    {% load static %}
+{% endblock %}
+
+<!-- Categories -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Brand:</h2>
+        <div class="row">
+            {% if brands %}
+                {% for brand in brands %}
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{% static 'brand/'|add:brand.immagine %}" class="card-img-top" alt="{{ brand.nome }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ brand.nome }}</h5>
+                            <a href="brand/{{brand.nome|lower}}" class="btn btn-primary">Esplora</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md">
+                    <div class="card product-card mb shadow-sm">
+                        <div class="card-body">
+                            <h2 style="text-align: center;"class="card-title">Nessuno brand disponibile.</h2>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
