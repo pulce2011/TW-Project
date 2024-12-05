@@ -1,0 +1,7 @@
+- Gestione degli utenti
+- Barra di ricerca
+- Aggiungere foto direttamente dall'interfaccia admin
+
+FACOLTATIVO:
+- aggiungere colore e capacità
+- filtrare prodotti in base a prezzo, data, condizione, 
