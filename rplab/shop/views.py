@@ -4,16 +4,20 @@ from django.db.models import Sum
 from .forms import *
 from .models import *
 
+
+#Vista HomeShop
+
 def home(request):
     brands = Brand.objects.all()
-    prodotti = Prodotto.objects.all().order_by('-data_pub')[:6]
-
-    print(prodotti)
+    prodotti = Prodotto.objects.all().order_by('-data_pub')[:6] #Visualizza solo gli ultimi 6 prodotti più recenti
 
     ctx = {"brands":brands,
            "prodotti":prodotti}
 
     return render(request, 'shop/home_shop.html', context=ctx)
+
+
+#ListView prodotti
 
 class AllProdcutsListView(ListView):
     model = Prodotto
@@ -26,6 +30,7 @@ class AllProdcutsListView(ListView):
         return context
     
 
+#ListView brands
 
 class AllBrandsListView(ListView):
     model = Brand
@@ -36,6 +41,9 @@ class AllBrandsListView(ListView):
         context = super().get_context_data(**kwargs)
         context["tot"] = self.model.objects.all().count()
         return context
+    
+
+#DetailView Prodotto
     
 class ProductDetailView(DetailView):
     model = Prodotto
@@ -50,8 +58,10 @@ class ProductDetailView(DetailView):
             context["prezzoda"] = " non disponibile."
         return context
     
+    
+#Vista pagina acquisto
+    
 def acquista(request, pk):
-    print("LOG: " + str(pk))
     if request.method == "POST":
         form = CondizioneProdottoForm(request.POST)
         if form.is_valid():
@@ -61,7 +71,10 @@ def acquista(request, pk):
     else:
         form = CondizioneProdottoForm()
         return render(request, 'shop/acquista.html', {"form":form})
-    
+
+
+#Vista pagina checkout
+
 def checkout(request, condizione, prodotto_pk):
     prodotto = get_object_or_404(Prodotto, pk=prodotto_pk)
     dettaglio = get_object_or_404(Dettagli, prodotto=prodotto, condizione=condizione)

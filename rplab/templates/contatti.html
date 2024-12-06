@@ -3,41 +3,48 @@
 {% block title %}Contatti{% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <h2>📞 Contattaci 📞</h2>
-    <p>Hai bisogno di informazioni o supporto? Siamo qui per aiutarti!</p>
-</div>
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Informazioni di contatto</h4>
-            <p><strong>Indirizzo:</strong> {{ contatti.indirizzo }}</p>
-            <p><strong>Email:</strong> <a href="mailto:{{ contatti.email }}">{{ contatti.email }}</a></p>
-            <p><strong>Telefono:</strong> <a href="tel:{{ contatti.telefono }}">{{ contatti.telefono }}</a></p>
-            <p><strong>Orari:</strong> {{ contatti.orari }}</p>
-        </div>
 
-        <!--
-        <div class="col-md-6">
-            <h4>Scrivici un messaggio</h4>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Inserisci il tuo nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Inserisci la tua email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Messaggio</label>
-                    <textarea id="message" name="message" class="form-control" rows="4" placeholder="Scrivi il tuo messaggio" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary mt-2">Invia</button>
-            </form>
-        </div>
-        -->
+    <!-- Titolo -->
+    <div class="text-center">
+        <h2>📞 Contattaci 📞</h2>
+        <p>Hai bisogno di informazioni o supporto? Siamo qui per aiutarti!</p>
     </div>
-</div>
+
+    <!-- Contenuto -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Informazioni di contatto</h4>
+                <p><strong>Indirizzo:</strong> {{ contatti.indirizzo }}</p>
+                <p><strong>Email:</strong> <a href="mailto:{{ contatti.email }}">{{ contatti.email }}</a></p>
+                <p><strong>Telefono:</strong> <a href="tel:{{ contatti.telefono }}">{{ contatti.telefono }}</a></p>
+                <p><strong>Orari:</strong> {{ contatti.orari }}</p>
+            </div>
+            
+
+            <!-- Form Contatti -->
+            <!--
+            <div class="col-md-6">
+                <h4>Scrivici un messaggio</h4>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Inserisci il tuo nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Inserisci la tua email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Messaggio</label>
+                        <textarea id="message" name="message" class="form-control" rows="4" placeholder="Scrivi il tuo messaggio" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Invia</button>
+                </form>
+            </div>
+            -->
+            
+        </div>
+    </div>
 {% endblock %}

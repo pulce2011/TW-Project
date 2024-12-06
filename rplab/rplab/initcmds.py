@@ -12,12 +12,13 @@ def init_database():
     if len(Brand.objects.all()) != 0:
         return
     
-    # Inizializziamo 5 brand
+    # Dizionario brand
     brands = {
         "nome": ["Apple", "Samsung"],
         "img": ["apple.png", "samsung.png"],
     }
 
+    # Dizionario prodotti
     products = {
         "nome": ["iPhone 8", "iPhone X", "iPhone 11 Pro", "iPhone 12", "iPhone 14 Pro Max"],
         "descrizione":["Apple iPhone 8 è uno smartphone introdotto sul mercato nel 2017. E' dotato di una batteria da 1820 mAh ed integra al proprio interno fotocamere anteriore e posteriore rispettivamente da 7 megapixel e da 12 megapixel. Per quanto riguarda le dimensioni, abbiamo uno spessore di 67.3 mm, altezza di 138.4 mm e larghezza di 67.3 mm. Lo schermo, invece, si caratterizza per un pannello di tipo IPS (TFT) con diagonale di 4.7 pollici e risoluzione di 750x1334 pixel: anche in questo caso non cambiano le dimensioni dello schermo rispetto ai precedenti modelli della famiglia iPhone a partire dalla serie iPhone 6. Il processore equipaggiato è di tipo Hexa Core, modello Apple A11 Bionic, caratterizzato da una frequenza di clock pari a 2.5 GHz. La memoria di storage a disposizione parte da un minimo di 64 GB, con la possibilità di avere tagli superiori al variare del modello.",
@@ -36,32 +37,34 @@ def init_database():
         "prezzo":[155, 649.99, 99.99, 309.49, 492]
     }
 
+    # Possibili condizioni
     condizioni = {1:'new',
                   2:'used',
                   3:'refurbished'}
 
 
-    #Creiamo i brand e associamo il nome
+    #Creazione brand [nome, path_immagine]
     for b in range(2):
         new_brand = Brand()
         new_brand.nome = brands["nome"][b]
         new_brand.immagine = brands["img"][b]
         new_brand.save()
 
-        #Per ciascun brand creiamo 5 prodotti
+        #Creazione prodotti [modello(brand), nome, descrizione, path_immagine, data_pubblicazione]
         for p in range(5):
             new_product = Prodotto()
+            new_product.modello = new_brand
             new_product.nome = products[b]["nome"][p]
             new_product.descrizione = products[b]["descrizione"][p]
-            new_product.modello = new_brand
             new_product.immagine = new_product.nome.replace(" ", "").lower()+".png"
             new_product.data_pub = timezone.now()
             new_product.save()
 
+            #Creazione prodotto singolo [prodotto, condizione, quantità, prezzo in base alla condizione]
             for d in range(3):
                 new_dettaglio = Dettagli()
-                new_dettaglio.condizione = condizioni[d+1]
                 new_dettaglio.prodotto = new_product
+                new_dettaglio.condizione = condizioni[d+1]
                 new_prezzo =  products[b]["prezzo"][p]
                 if(new_dettaglio.condizione == 'new'):
                     new_dettaglio.prezzo = new_prezzo
@@ -74,6 +77,6 @@ def init_database():
                 new_dettaglio.save()
                 
 
-
-    print("[LOG] Brands: " + str(Brand.objects.all())) #controlliamo
+    #Test funzionamento
+    print("[LOG] Brands: " + str(Brand.objects.all()))
     print("[LOG] Prodotti: " + str(Prodotto.objects.all()))

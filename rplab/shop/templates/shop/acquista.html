@@ -1,8 +1,10 @@
 {% extends 'shop/base_shop.html' %}
 
 {% block content %}
+
     <div class="container">
-        <!-- Card con form -->
+
+        <!-- Form -->
         <div class="card shadow">
             <div class="card-header">
                 Seleziona la Condizione
@@ -18,9 +20,12 @@
                 </form>
             </div>
         </div>
-        <!-- Link per tornare indietro -->
+
+        <!-- Indietro -->
         <div class="back-link">
             <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-link">Torna indietro</a>
         </div>
+        
     </div>
+
 {% endblock %}

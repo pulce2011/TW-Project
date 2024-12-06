@@ -5,23 +5,28 @@
 {% block header %}Il nostro team{% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <h2>❓ Chi siamo ❓</h2>
-    <p>Scopri di più sulla nostra azienda e il nostro team.</p>
-</div>
-<div class="container mt-4">
-    <div class="row">
-        {% for membro in team %}
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">{{ membro.nome }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ membro.ruolo }}</h6>
-                    <p class="card-text">{{ membro.descrizione }}</p>
+
+    <!-- Titolo -->
+    <div class="text-center">
+        <h2>❓ Chi siamo ❓</h2>
+        <p>Scopri di più sulla nostra azienda e il nostro team.</p>
+    </div>
+
+    <!-- Contenuto -->
+    <div class="container mt-4">
+        <div class="row">
+            {% for membro in team %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ membro.nome }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ membro.ruolo }}</h6>
+                        <p class="card-text">{{ membro.descrizione }}</p>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
+
 {% endblock %}

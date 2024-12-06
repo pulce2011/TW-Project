@@ -4,24 +4,31 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
 {% endblock %}
 
 {% block content %}
+
+<!-- Welcome  -->
 <div class="text-center" >
     <h2>📱Riparazione smartphone in 15 minuti!📱</h2>
     <p><b>RPLab</b> è un centro riparazione telefoni e computer, specializzato nel recupero dei dati. Effettuiamo riparazioni <b>rapide e garantite fino a 12 mesi</b> e offriamo un telefono di cortesia per le riparazioni più lunghe.
-        <br>
-        <h6>Chiamaci per un preventivo gratuito!<h6>
+    <br>
+    <h6>Chiamaci o scrivici su Whatsapp per un preventivo gratuito!<h6>
     </p>
-    <a id="red" class="btn btn-outline-danger mt-3" href="tel:+3905351930015">Chiama!</a>
+
+    <a id="red" class="btn btn-outline-primary mt-3" href="tel:+3905351930015"><strong>Chiama</strong></a>
+    <a id="red" class="btn btn-outline-success mt-3" href="https://wa.me/+3905351930015"><strong>Whatsapp</strong></a>
 </div>
 
+<!-- Separator -->
 <div class="separator"></div>
 
+<!-- Shop -->
 <section class="hero-section bg-light py-5">
     <div class="container text-center">
         <div class="row">
+
             <div class="col-lg-6 d-flex align-items-center justify-content-center">
                 <div>
                     <h1 class="display-4 fw-bold text-danger">Esplora il nostro shop!</h1>
@@ -32,9 +39,11 @@
                     <a href="/sell" class="btn btn-outline-secondary btn-lg mt-3">Vendi il tuo telefono</a>
                 </div>
             </div>
+
             <div class="col-lg-6">
-                <img src="{% static '/imgs/phone-shop.jpg'%}" alt="Telefoni Ricondizionati" class="img-fluid rounded">
+                <img src="{% static '/imgs/phone-shop.jpg'%}" alt="Telefoni Ricondizionati" class="img-fluid rounded" id="shop-image">
             </div>
+
         </div>
     </div>
 </section>
@@ -43,6 +52,7 @@
 <section class="features-section bg-white py-5">
     <div class="container">
         <div class="row text-center">
+
             <div class="col-md-4">
                 <div class="card border-0">
                     <div class="card-body">
@@ -52,6 +62,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="card border-0">
                     <div class="card-body">
@@ -61,6 +72,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="card border-0">
                     <div class="card-body">
@@ -70,8 +82,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
+
 {% endblock %}
 

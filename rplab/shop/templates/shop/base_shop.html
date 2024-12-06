@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     {% block shopnav %}
+
         <!-- Mini Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <!-- Nome del sito -->
-                <a class="navbar-brand" href="/shop/">Shop</a>
                 
-                <!-- Menu di navigazione -->
+                <a class="navbar-brand" href="{% url 'shop:homeshop' %}">Shop</a>
+                
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/shop/prodotti/">Prodotti</a>
+                            <a class="nav-link" href="{% url 'shop:prodotti' %}">Prodotti</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/shop/brands/">Brands</a>
+                            <a class="nav-link" href="{% url 'shop:brands' %}">Brands</a>
                         </li>
                     </ul>
                 </div>
+
             </div>
         </nav>
         <br>
+
     {% endblock %}
+    
 {% endblock %}

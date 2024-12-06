@@ -4,11 +4,11 @@ from .views import *
 from .initcmds import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), #AdminPage
     path('', home, name='home'), #HomePage
     path('home/', home, name='home'), #HomePage
     path('servizi/', servizi, name="servizi"), #Servizi
-    path('about/', about, name="about"), #Chi siamo
+    path('about/', about, name="about"), #About
     path('contatti/', contatti, name="contatti"), #Contatti
 
     path('shop/', include('shop.urls')), #Shop App

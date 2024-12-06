@@ -9,3 +9,7 @@
     color: red !important;
     background-color: aquamarine;
 }
+
+#shop-image {
+    border-radius: 20px !important;
+}

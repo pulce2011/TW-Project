@@ -1,13 +1,15 @@
 from django.shortcuts import render
 
+
 #Vista per la homepage
+
 def home(request):
 
     return render(request, template_name='home.html')
 
-from django.shortcuts import render
 
 #Vista per i servizi
+
 def servizi(request):
 
     servizi = [
@@ -17,9 +19,9 @@ def servizi(request):
     ]
     return render(request, 'servizi.html', {'servizi': servizi})
 
-from django.shortcuts import render
 
 #Vista per 'Chi siamo'
+
 def about(request):
 
     team = [
@@ -36,7 +38,9 @@ def about(request):
         {'nome':'Filippo Cerchi', 'ruolo':'Tecnico Multifunzione', 'descrizione':'Specializzato in informatica e riparazione PC'}
     ]
     return render(request, 'about.html', {'team': team})
-from django.shortcuts import render
+
+
+#Vista per i contatti
 
 def contatti(request):
 

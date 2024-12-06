@@ -1,0 +1,28 @@
+body {
+    /*font-family: Montserrat, Outfit, Arial, Helvetica, sans-serif;*/
+
+    font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+#call {
+    border-color: #CA421C !important;
+    background-color: #CA421C !important;
+    border-radius: 1.5rem !important;
+}
+
+#call:hover {
+    background-color: #7c2811 !important;
+}
+
+span {
+    color: #CA421C;
+}
+
+
