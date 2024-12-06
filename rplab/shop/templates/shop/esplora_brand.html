@@ -1,6 +1,6 @@
-{% extends "shop/base_shop.html"%}
+{% extends 'shop/base_shop.html' %}
 
-{% block head %}
+{% block head%}
     {% load static %}
 {% endblock %}
 
@@ -9,11 +9,11 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1 class="display-4 fw-bold">Tutti i <span style="color = #CA421C;">Brand</span> ({{tot}})</h1>
+            <h1 class="display-4 fw-bold">Prodotti <span style="color = #CA421C;">{{nome_brand}}</span></h1>
             <p class="lead">Acquista telefoni nuovi, usati e ricondizionati al miglior prezzo!</p>
         </div>
     </header>
 
-{% include 'shop/list_brand.html' %}
+{% include 'shop/list_product.html' %}
 
 {% endblock %}

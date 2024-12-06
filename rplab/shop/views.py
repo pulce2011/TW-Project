@@ -19,7 +19,7 @@ def home(request):
 
 #ListView prodotti
 
-class AllProdcutsListView(ListView):
+class AllProductsListView(ListView):
     model = Prodotto
     template_name = "shop/all_prodotti.html"
     context_object_name = "prodotti"
@@ -41,7 +41,25 @@ class AllBrandsListView(ListView):
         context = super().get_context_data(**kwargs)
         context["tot"] = self.model.objects.all().count()
         return context
-    
+
+
+#ListView Esplora Brand
+
+class ExploreProdcutsListView(ListView):
+    model = Prodotto
+    template_name = "shop/esplora_brand.html"
+    context_object_name = "prodotti"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["nome_brand"] = self.kwargs["nome"]
+        return context
+
+    def get_queryset(self):
+        arg = self.kwargs["nome"]
+        qs = self.model.objects.filter(modello=get_object_or_404(Brand, nome__icontains=arg))
+        return qs    
+
 
 #DetailView Prodotto
     

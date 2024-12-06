@@ -9,12 +9,15 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1 class="display-4 fw-bold">Benvenuto nello Shop</h1>
+            <h1 class="display-4 fw-bold">Benvenuto nello <span style="color = #CA421C;">Shop</span></h1>
             <p class="lead">Acquista telefoni nuovi, usati e ricondizionati al miglior prezzo!</p>
         </div>
     </header>
 
 {% include 'shop/list_product.html' %}
+    <div class="text-center" >
+        <a id="red" class="btn btn-outline-primary mt-3" href="{% url 'shop:prodotti' %}" style="margin: 80px;"><strong>Altro...</strong></a>
+    </div>
 {% include 'shop/list_brand.html' %}
 
 {% endblock %}
