@@ -11,4 +11,4 @@
 
 FACOLTATIVO:
 - aggiungere colore e capacità
-- filtrare prodotti in base a prezzo, data, condizione, 
+- filtrare prodotti in base a prezzo, data, condizione, test
