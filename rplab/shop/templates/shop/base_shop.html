@@ -7,9 +7,8 @@
         <!-- Mini Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                
                 <a class="navbar-brand" href="{% url 'shop:homeshop' %}">Shop</a>
-                
+        
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -19,8 +18,35 @@
                             <a class="nav-link" href="{% url 'shop:brands' %}">Brands</a>
                         </li>
                     </ul>
-                </div>
 
+                    <ul class="navbar-nav ms-auto">
+        
+                        {% if user.is_authenticated %}  <!-- Se l'utente è autenticato -->
+                       
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'users:dashboard' %}">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'users:logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-link nav-link" style="color: black; border: none; background: none;">Logout</button>
+                                </form>
+                            </li>
+
+                        {% else %} <!-- Se l'utente non è autenticato -->
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'users:register' %}">Registrati</a>
+                            </li>
+                            
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </nav>
         <br>

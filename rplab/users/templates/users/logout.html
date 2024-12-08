@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+    <div class="text-center">
+        <h2>Logout effettuato con successo</h2>
+        <p>Sei stato disconnesso dal tuo account.</p>
+
+        <!-- Form per il logout con metodo POST -->
+        <form method="post" action="{% url 'users:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Accedi di nuovo</button>
+        </form>
+    </div>
+
+{% endblock %}

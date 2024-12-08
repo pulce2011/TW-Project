@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from .models import *
 
@@ -32,7 +33,7 @@ class AllProductsListView(ListView):
 
 #ListView brands
 
-class AllBrandsListView(ListView):
+class AllBrandsListView(LoginRequiredMixin, ListView):
     model = Brand
     template_name = "shop/all_brand.html"
     context_object_name = "brands"
@@ -78,7 +79,8 @@ class ProductDetailView(DetailView):
     
     
 #Vista pagina acquisto
-    
+
+@login_required
 def acquista(request, pk):
     if request.method == "POST":
         form = CondizioneProdottoForm(request.POST)
@@ -93,6 +95,7 @@ def acquista(request, pk):
 
 #Vista pagina checkout
 
+@login_required
 def checkout(request, condizione, prodotto_pk):
     prodotto = get_object_or_404(Prodotto, pk=prodotto_pk)
     dettaglio = get_object_or_404(Dettagli, prodotto=prodotto, condizione=condizione)

@@ -12,6 +12,7 @@ urlpatterns = [
     path('contatti/', contatti, name="contatti"), #Contatti
 
     path('shop/', include('shop.urls')), #Shop App
+    path('users/', include('users.urls')),  # Users App
 
 ]
 

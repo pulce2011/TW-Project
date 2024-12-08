@@ -45,7 +45,13 @@
                             {% if dettaglio.quantita > 0 %} <!-- Se prodotto disponibile disponibile -->
                             <strong>Quantità disponibile:</strong> {{ dettaglio.quantita }}
                             <div class="text-center">
+
+
+
                                 <a href="" class="btn btn-success">Acquista</a> <!-- DA IMPLEMENTARE -->
+
+
+                                
                                 <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
                             </div>
                             {% else %}

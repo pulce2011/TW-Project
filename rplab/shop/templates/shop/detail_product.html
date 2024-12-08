@@ -26,8 +26,13 @@
                 <p><strong>Brand:</strong> {{ prodotto.modello }}</p>
                 <p><strong>Descrizione:</strong> {{ prodotto.descrizione }}</p>
                 <p><strong>Prezzo:</strong> da € {{ prezzoda }}</p>
-
-                <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-success">Acquista</a>
+                
+                {% if user.is_authenticated %}
+                    <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-success">Scegli...</a>
+                {% else %}
+                    <a href="{% url 'users:register' %}" class="btn btn-primary">Registrati</a>
+                    <a href="{% url 'users:login' %}" class="btn btn-primary">Accedi</a>
+                {% endif%}
                 <a href="{% url 'shop:prodotti' %}" class="btn btn-secondary">Torna alla lista dei prodotti</a>
             </div>
 

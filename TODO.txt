@@ -1,11 +1,10 @@
 PRIORITY:
-- Aggiungere altri esempi
 - Aggiornare DB dopo acquisto
-- Creare modello "Comanda"
+- Aggiungere a dashboard gli acquisti
 - Forms CRUD utente "dipendente"
 - Sezione vendi
 
-
+    
 OTHERS:
 - Gestione degli utenti
 - Barra di ricerca
