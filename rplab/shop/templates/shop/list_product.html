@@ -15,10 +15,10 @@
                     {% for prodotto in prodotti %} <!-- Per ogni prodotto esistente -->
                         <div class="col-md-4">
                             <div class="card product-card mb-4 shadow-sm">
-                                <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="card-img-top" alt="{{ prodotto.nome }}">
+                                <img height="auto" src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="card-img-top" alt="{{ prodotto.nome }}">
                                 
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ prodotto.nome }}</h5>
+                                    <h5 class="card-title">{{prodotto.modello.nome}} {{ prodotto.nome }}</h5>
                                     <p class="desc card-text text-muted">{{ prodotto.descrizione }}</p>
                                     <div class="text-center">
                                         <a href="/shop/prodotto/{{prodotto.pk}}" class="btn btn-outline-primary">Scopri di più</a>

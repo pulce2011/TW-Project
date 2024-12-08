@@ -1,13 +1,18 @@
-- Gestione degli utenti
-- Barra di ricerca
-- Fixare bug "Indietro"
+PRIORITY:
+- Aggiungere altri esempi
+- Aggiornare DB dopo acquisto
+- Creare modello "Comanda"
 - Forms CRUD utente "dipendente"
 - Sezione vendi
-- Aggiornare DB dopo acquisto
-- Inviare mail ad acquisto completato
-- test
+
+
+OTHERS:
+- Gestione degli utenti
+- Barra di ricerca
+
 
 FACOLTATIVO:
 - aggiungere colore e capacità
 - filtrare prodotti in base a prezzo, data, condizione, 
-- aggiungere foto direttamente dall'interfaccia admin
+- Aggiungere foto direttamente dall'interfaccia admin
+- Inviare mail ad acquisto completato
