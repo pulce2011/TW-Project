@@ -1,9 +1,7 @@
 - Gestione degli utenti
 - Barra di ricerca
-- Aggiungere foto direttamente dall'interfaccia admin
 - Fixare bug "Indietro"
 - Forms CRUD utente "dipendente"
-- Implementare funzione 'Esplora Brand' 
 - Sezione vendi
 - Aggiornare DB dopo acquisto
 - Inviare mail ad acquisto completato
@@ -12,3 +10,4 @@
 FACOLTATIVO:
 - aggiungere colore e capacità
 - filtrare prodotti in base a prezzo, data, condizione, 
+- aggiungere foto direttamente dall'interfaccia admin
