@@ -5,7 +5,7 @@
 - Sezione vendi
 - Aggiornare DB dopo acquisto
 - Inviare mail ad acquisto completato
-
+- test
 
 FACOLTATIVO:
 - aggiungere colore e capacità
