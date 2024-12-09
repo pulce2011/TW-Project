@@ -3,9 +3,11 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-from django.urls import reverse_lazy
 from .forms import *
 from .models import *
+from .crud_views.create import *
+from .crud_views.update import *
+from .crud_views.delete import *
 
 
 #Vista HomeShop
@@ -128,7 +130,6 @@ def acquistoeffettuato(request, utente_pk, dettaglio_pk):
     return render(request, 'shop/acquisto_effettuato.html', {'utente':utente, 'dettagli':dettaglio})
 
 
-
 #Vista pagina homepage per le operazione CRUD
 
 def crud_operations(request):
@@ -141,38 +142,3 @@ def crud_operations(request):
         return redirect('shop:' + url_name)
     else:
         return render(request, "shop/CRUD/home_crud.html")
-
-
-class BrandCreateView(CreateView):
-    model = Brand
-    fields = ['nome', 'immagine']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('gestione')
-
-
-class ProdottoCreateView(CreateView):
-    model = Prodotto
-    fields = ['nome', 'descrizione', 'modello', 'immagine']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('gestione')
-
-
-class DettaglioCreateView(CreateView):
-    model = Dettagli
-    fields = ['prodotto', 'condizione', 'prezzo', 'quantita']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('gestione')
-
-class ComandaCreateView(CreateView):
-    model = Comanda
-    fields = ['utente', 'dettagli']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('gestione')
-
-'''
-class BrandUpdateView(UpdateView):
-    model = Brand
-    template_name = "shop/CRUD/update.html"
-    fields = ['nome', 'immagine']
-    success_url = reverse_lazy('gestione')
-'''

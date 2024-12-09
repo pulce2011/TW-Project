@@ -3,12 +3,11 @@
 {% block content %}
 
     <div class="container mt-5">
-        <h1 class="text-center">Modifica Prodotto</h1>
-        <form method="post" enctype="multipart/form-data">
+        <h1 class="text-center">Modifica: {{ model.nome }}</h1>
+        <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Salva Modifiche</button>
-            <a href="{% url 'product_list' %}" class="btn btn-secondary">Annulla</a>
+            {{ form.as_p }} 
+            <button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
         </form>
     </div>
 
