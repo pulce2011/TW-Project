@@ -1,0 +1,15 @@
+{% extends 'shop/base_shop.html' %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h1 class="text-center">Modifica Prodotto</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">Annulla</a>
+        </form>
+    </div>
+
+{% endblock %}

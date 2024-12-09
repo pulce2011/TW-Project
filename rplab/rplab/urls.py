@@ -16,5 +16,5 @@ urlpatterns = [
 
 ]
 
-erase_db()
+#erase_db()
 init_database()
