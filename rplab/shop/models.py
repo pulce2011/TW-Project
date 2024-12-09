@@ -52,6 +52,8 @@ class Dettagli(models.Model):
         return f"{self.prodotto.nome} ({self.condizione}) - {self.quantita} disponibili"
         
 
+#Ordini effettuati
+
 class Comanda(models.Model):
     utente = models.ForeignKey(User, on_delete=models.CASCADE, related_name="utente")
     dettagli = models.ForeignKey(Dettagli, on_delete=models.CASCADE, related_name="prodotto_dettaglio")  # Dettagli dell'acquisto (condizione, prezzo)

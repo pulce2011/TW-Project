@@ -3,6 +3,7 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from shop.models import Comanda
 
 def register(request):
     if request.method == 'POST':
@@ -17,7 +18,8 @@ def register(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'users/dashboard.html')
+    comande = Comanda.objects.filter(utente=request.user).order_by('-data_acquisto')
+    return render(request, 'users/dashboard.html', {"comande":comande})
 
 @login_required
 def custom_logout(request):

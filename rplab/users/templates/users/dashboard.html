@@ -3,9 +3,42 @@
 {% block content%}
 
     <div class="text-center">
-        <h2>Benvenuto, {{ user.username }}!</h2>
+        <h2>Benvenuto/a, {{ user.username }}!</h2>
         <p>Questa è la tua dashboard personale.</p>
-        <strong></strong>
+    </div>
+
+    <div class="mt-5 text-center">
+        <h3>I tuoi ordini</h3>
+        {% if comande %}
+            <table class="table table-bcomandaed">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Brand</th>
+                        <th>Modello</th>
+                        <th>Condizione</th>
+                        <th>Prezzo Totale</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comanda in comande %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ comanda.dettagli.prodotto.modello.nome }}</td>
+                        <td>{{ comanda.dettagli.prodotto.nome }}</td>
+                        <td>{{ comanda.dettagli.condizione }}
+                        <td>{{ comanda.dettagli.prezzo }}</td>
+                        <td>{{ comanda.data_acquisto }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Non hai effettuato ordini.</p>
+        {% endif %}
+        <br>
+        <a href="{% url 'shop:homeshop' %}" class="btn btn-primary">Home</a>
         <a href="{% url 'users:logout' %}" class="btn btn-danger">Logout</a>
     </div>
 

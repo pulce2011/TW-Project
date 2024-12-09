@@ -1,6 +1,5 @@
 PRIORITY:
 - Creare pagine 404 ed errori simili (quando si acquista iphone senza disponibilità)
-- Aggiungere a dashboard gli acquisti
 - Forms CRUD utente "dipendente"
 - Sezione vendi
 
