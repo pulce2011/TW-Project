@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 from .forms import *
 from .models import *
 
@@ -100,4 +101,27 @@ def checkout(request, condizione, prodotto_pk):
     prodotto = get_object_or_404(Prodotto, pk=prodotto_pk)
     dettaglio = get_object_or_404(Dettagli, prodotto=prodotto, condizione=condizione)
 
-    return render(request, 'shop/checkout.html', {"prodotto":prodotto, "dettaglio":dettaglio})
+    if request.method == "POST" and request.user.is_authenticated:
+        user = request.user
+        return redirect('shop:confermato', utente_pk=user.pk, dettaglio_pk=dettaglio.pk)
+    else:
+        return render(request, 'shop/checkout.html', {"prodotto":prodotto, "dettaglio":dettaglio})
+
+
+#Vista pagina di acquisto effettuato
+
+@login_required
+def acquistoeffettuato(request, utente_pk, dettaglio_pk):
+    utente = get_object_or_404(User, pk=utente_pk)
+    dettaglio = get_object_or_404(Dettagli, pk=dettaglio_pk)
+
+    if utente and dettaglio:
+        new_comanda = Comanda()
+        new_comanda.utente = utente
+        new_comanda.dettagli = dettaglio
+        new_comanda.data_acquisto = timezone.now()
+        new_comanda.save()
+        dettaglio.quantita -= 1
+        dettaglio.save()
+
+    return render(request, 'shop/acquisto_effettuato.html', {'utente':utente, 'dettagli':dettaglio})

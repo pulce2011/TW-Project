@@ -1,0 +1,15 @@
+{% extends 'shop/base_shop.html' %}
+
+{% block content %}
+
+    <div class="container text-center mt-5">
+        <div class="alert alert-success" role="alert">
+            <h1 class="display-4">Grazie per il tuo acquisto!</h1>
+            <p class="lead">Il tuo ordine è stato confermato con successo.</p>
+            <hr>
+            <p>Riceverai una conferma via email con i dettagli dell'ordine.</p>
+        </div>
+        <a href="{% url 'shop:homeshop' %}" class="btn btn-primary btn-lg mt-3">Torna al Negozio</a>
+    </div>
+    
+{% endblock %}

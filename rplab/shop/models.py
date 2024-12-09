@@ -46,7 +46,7 @@ class Dettagli(models.Model):
 
     class Meta:
         unique_together = ('prodotto', 'condizione')
-        verbose_name_plural = "Quantità Prodotto"
+        verbose_name_plural = "Dettagli Prodotto"
 
     def __str__(self):
         return f"{self.prodotto.nome} ({self.condizione}) - {self.quantita} disponibili"
