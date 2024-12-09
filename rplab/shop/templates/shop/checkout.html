@@ -42,22 +42,17 @@
                         </div>
 
                         <div class="mb-3">
-                            {% if dettaglio.quantita > 0 %} <!-- Se prodotto disponibile disponibile -->
+                            {% if dettaglio.quantita > 0 %} <!-- Se prodotto disponibile -->
                             <strong>Quantità disponibile:</strong> {{ dettaglio.quantita }}
                             <div class="text-center">
 
                                 <form method="post">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-success">Acquista</button>
+                                    <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
                                 </form>
-
-                                <!-- <a href="" class="btn btn-success">Acquista</a>  DA IMPLEMENTARE -->
-
-
-                                
-                                <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
                             </div>
-                            {% else %}
+                            {% else %} <!-- Se prodotto NON disponibile -->
                             <strong>Quantità disponibile:</strong> <p style="color: red; display: inline;"> {{ dettaglio.quantita }}</div>
                             <div class="text-center">
                                 <a class="btn btn-danger">Non disponibile</a>
@@ -65,7 +60,6 @@
                             </div>
                             {% endif %}
                         </div>
-
                     </div>
                 </div>
             </div>
