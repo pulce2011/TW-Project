@@ -9,7 +9,11 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1 class="display-4 fw-bold">Tutti i <span style="color = #CA421C;">Prodotti</span> ({{tot}})</h1>
+            {% if search_ctx %}
+                <h1 class="display-4 fw-bold">Ricerca per: <span style="color = #CA421C;">{{search_ctx}}</span></h1>
+            {% else%}
+                <h1 class="display-4 fw-bold">Tutti i <span style="color = #CA421C;">Prodotti</span> ({{tot}})</h1>
+            {% endif %}
             <p class="lead">Acquista telefoni nuovi, usati e ricondizionati al miglior prezzo!</p>
         </div>
     </header>

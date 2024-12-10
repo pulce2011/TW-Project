@@ -18,7 +18,8 @@ def home(request):
     prodotti = Prodotto.objects.all().order_by('-data_pub')[:6] #Visualizza solo gli ultimi 6 prodotti più recenti
 
     ctx = {"brands":brands,
-           "prodotti":prodotti}
+           "prodotti":prodotti,
+           "evidenza":"in evidenza"}
 
     return render(request, 'shop/home_shop.html', context=ctx)
 
@@ -110,9 +111,20 @@ def checkout(request, condizione, prodotto_pk):
         return redirect('shop:confermato', utente_pk=user.pk, dettaglio_pk=dettaglio.pk)
     else:
         return render(request, 'shop/checkout.html', {"prodotto":prodotto, "dettaglio":dettaglio})
+    
+
+# Vista per la ricerca di prodotti
+
+def search(request):
+    search_ctx = request.GET.get('search')
+    if search_ctx:
+        list_products = Prodotto.objects.filter(nome__icontains=search_ctx)
+    else:
+        return redirect('shop:homeshop')
+    return render(request, 'shop/all_prodotti.html', {'search_ctx': search_ctx, 'prodotti': list_products})
 
 
-#Vista pagina di acquisto effettuato
+# Vista pagina di acquisto effettuato
 
 @login_required
 def acquistoeffettuato(request, utente_pk, dettaglio_pk):
@@ -131,7 +143,7 @@ def acquistoeffettuato(request, utente_pk, dettaglio_pk):
     return render(request, 'shop/acquisto_effettuato.html', {'utente':utente, 'dettagli':dettaglio})
 
 
-#Vista pagina homepage per le operazione CRUD
+# Vista pagina homepage per le operazione CRUD
 
 @staff_member_required
 def crud_operations(request):

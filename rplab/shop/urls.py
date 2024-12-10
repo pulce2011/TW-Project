@@ -12,6 +12,7 @@ urlpatterns = [
     path('prodotto/<int:pk>/acquista/', views.acquista, name='acquista'), # Acquista
     path('checkout/<str:condizione>/<int:prodotto_pk>/', views.checkout, name='checkout'), # Checkout
     path('confirmed/<int:utente_pk>/<int:dettaglio_pk>', views.acquistoeffettuato, name='confermato'), # Conferma ordine
+    path('search/', views.search, name='search'), # Cerca prodotti
 
     # CRUD HomePage
     path('gestione', views.crud_operations, name="gestione"),

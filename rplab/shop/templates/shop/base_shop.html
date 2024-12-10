@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    {% load static %}
+{% endblock %}
+
 {% block content %}
 
     {% block shopnav %}
@@ -8,9 +12,10 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'shop:homeshop' %}">Shop</a>
-        
                 <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ml-auto">
+
+                    <!-- Link a sinistra -->
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'shop:prodotti' %}">Prodotti</a>
                         </li>
@@ -19,20 +24,29 @@
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav ms-auto">
-        
-                        {% if user.is_authenticated %}  <!-- Se l'utente è autenticato -->
+                    <!-- Barra di ricerca al centro -->
+                    <form class="d-flex mx-auto" method="GET" action="{% url 'shop:search' %}">
+                        <div class="input-group">
+                            <input id="search-input" type="search" name="search" class="form-control rounded-pill" placeholder="Cerca prodotti..." style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <button id="search-button" class="btn btn-outline-success rounded-pill" type="submit" style="margin-left: 5px; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
 
-                            {% if user.is_staff %} <!-- Se l'utente è staff -->
+                    <!-- Link a destra -->
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+
+                            {% if user.is_staff %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'shop:gestione' %}">Gestione</a>
                                 </li>
                             {% endif %}
-                       
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'users:dashboard' %}">Dashboard</a>
                             </li>
-
                             <li class="nav-item">
                                 <form method="post" action="{% url 'users:logout' %}">
                                     {% csrf_token %}
@@ -40,23 +54,21 @@
                                 </form>
                             </li>
 
-                        {% else %} <!-- Se l'utente non è autenticato -->
-
+                        {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'users:login' %}">Login</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'users:register' %}">Registrati</a>
                             </li>
-                            
                         {% endif %}
+
                     </ul>
                 </div>
             </div>
         </nav>
-        <br>
+
+        <script src="{% static 'js/disable_search_button.js' %}"></script>
 
     {% endblock %}
-    
 {% endblock %}

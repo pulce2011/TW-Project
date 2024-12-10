@@ -6,7 +6,11 @@
     <section class="bg-light py-5">
         <div class="container">
 
-            <h2 class="text-center mb-4">Brand:</h2>
+            {% if evidenza %}
+                <h2 class="text-center mb-4">Brand {{evidenza}}:</h2>
+            {% else %}
+                <h2 class="text-center mb-4">Brand:</h2>
+            {% endif%}
 
             <div class="row">
 

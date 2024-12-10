@@ -6,7 +6,11 @@
     <section id="products" class="py-5">
         <div class="container">
 
-            <h2 class="text-center mb-4">Prodotti:</h2>
+            {% if evidenza %}
+                <h2 class="text-center mb-4">Prodotti {{evidenza}}:</h2>
+            {% else %}
+                <h2 class="text-center mb-4">Prodotti:</h2>
+            {% endif %}
 
             <div class="row">
 
