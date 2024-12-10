@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from .forms import *
@@ -132,6 +133,7 @@ def acquistoeffettuato(request, utente_pk, dettaglio_pk):
 
 #Vista pagina homepage per le operazione CRUD
 
+@staff_member_required
 def crud_operations(request):
     operation = request.GET.get('operazione')
     model = request.GET.get('modello')
