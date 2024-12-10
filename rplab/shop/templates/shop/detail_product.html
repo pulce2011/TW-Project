@@ -27,9 +27,9 @@
                 <p><strong>Descrizione:</strong> {{ prodotto.descrizione }}</p>
                 <p><strong>Prezzo:</strong> da € {{ prezzoda }}</p>
                 
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated %} <!-- Se utente è autenticato -->
                     <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-success">Scegli...</a>
-                {% else %}
+                {% else %} <!-- Se utente NON è autenticato -->
                     <a href="{% url 'users:register' %}" class="btn btn-primary">Registrati</a>
                     <a href="{% url 'users:login' %}" class="btn btn-primary">Accedi</a>
                 {% endif%}

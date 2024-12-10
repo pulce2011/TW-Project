@@ -3,6 +3,7 @@ from shop.forms import *
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 
+
 # Vista per selezionare il brand da eliminare
 
 def select_brand_to_delete(request):
@@ -59,6 +60,7 @@ def select_comanda_to_delete(request):
     return render(request, 'shop/CRUD/select_model_to_operate.html', {'form': form})
 
 
+# Classe per eliminare brand
 
 class BrandDeleteView(DeleteView):
     model = Brand
@@ -66,17 +68,26 @@ class BrandDeleteView(DeleteView):
     context_object_name = 'model'
     success_url = reverse_lazy('shop:gestione')
 
+
+# Classe per eliminare prodotto
+
 class ProdottoDeleteView(DeleteView):
     model = Prodotto
     template_name = "shop/CRUD/delete.html"
     context_object_name = 'model'
     success_url = reverse_lazy('shop:gestione')
 
+
+# Classe per eliminare dettaglio
+
 class DettaglioDeleteView(DeleteView):
     model = Dettagli
     template_name = "shop/CRUD/delete.html"
     context_object_name = 'model'
     success_url = reverse_lazy('shop:gestione')
+
+
+# Classe per eliminare comanda
 
 class ComandaDeleteView(DeleteView):
     model = Comanda

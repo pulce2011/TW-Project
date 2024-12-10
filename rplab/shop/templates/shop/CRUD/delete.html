@@ -4,6 +4,7 @@
 
     {% if user.is_staff or user.is_superuser %}
 
+        <!-- Form per delete -->
         <div class="container mt-5">
             <h1 class="text-center text-danger">Conferma Eliminazione</h1>
             {% if model.nome %}

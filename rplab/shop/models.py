@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Brand di prodotti
+# Brand
 
 class Brand(models.Model):
     nome = models.CharField(max_length=100, unique=True)
@@ -36,7 +36,7 @@ class Condizione(models.TextChoices):
     refurbished = 'refurbished', 'Ricondizionato'
 
 
-# Quantita per ogni prodotto in base alla condizione
+# Prodotto in dettaglio (quantità, condizione, prezzo...)
 
 class Dettagli(models.Model):
     prodotto = models.ForeignKey(Prodotto, on_delete=models.CASCADE, related_name='prodotto')

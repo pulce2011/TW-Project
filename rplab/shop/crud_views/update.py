@@ -60,31 +60,41 @@ def select_comanda_to_update(request):
     return render(request, 'shop/CRUD/select_model_to_operate.html', {'form': form})
 
 
+# Classe per agggiornare brand
 
 class BrandUpdateView(UpdateView):
     model = Brand
-    fields = ['nome', 'immagine']  # I campi che vuoi permettere di modificare
+    fields = ['nome', 'immagine']
     template_name = 'shop/CRUD/update.html'
     context_object_name = 'model'
-    success_url = reverse_lazy('shop:gestione')  # Dove reindirizzare dopo il salvataggio
+    success_url = reverse_lazy('shop:gestione')
+
+
+# Classe per agggiornare prodotto
 
 class ProdottoUpdateView(UpdateView):
     model = Prodotto
-    fields = ['nome', 'descrizione', 'modello', 'immagine']  # I campi che vuoi permettere di modificare
+    fields = ['nome', 'descrizione', 'modello', 'immagine']
     template_name = 'shop/CRUD/update.html'
     context_object_name = 'model'
-    success_url = reverse_lazy('shop:gestione')  # Dove reindirizzare dopo il salvataggio
+    success_url = reverse_lazy('shop:gestione')
+
+
+# Classe per agggiornare dettaglio
 
 class DettaglioUpdateView(UpdateView):
     model = Dettagli
-    fields = ['prodotto', 'condizione', 'prezzo', 'quantita']  # I campi che vuoi permettere di modificare
+    fields = ['prodotto', 'condizione', 'prezzo', 'quantita']
     template_name = 'shop/CRUD/update.html'
     context_object_name = 'model'
-    success_url = reverse_lazy('shop:gestione')  # Dove reindirizzare dopo il salvataggio
+    success_url = reverse_lazy('shop:gestione')
+
+
+# Classe per agggiornare comanda
 
 class ComandaUpdateView(UpdateView):
     model = Comanda
-    fields = ['utente', 'dettagli']  # I campi che vuoi permettere di modificare
+    fields = ['utente', 'dettagli']
     template_name = 'shop/CRUD/update.html'
     context_object_name = 'model'
-    success_url = reverse_lazy('shop:gestione')  # Dove reindirizzare dopo il salvataggio
+    success_url = reverse_lazy('shop:gestione')
