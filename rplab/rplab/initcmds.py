@@ -15,7 +15,7 @@ def init_database():
     # Dizionario brand
     brands = {
         "nome": ["Apple", "Samsung", "Xiaomi"],
-        "img": ["apple.png", "samsung.png", "xiaomi.png"],
+        "img": ["brands/apple.png", "brands/samsung.png", "brands/xiaomi.png"],
     }
 
     # Dizionario prodotti
@@ -64,7 +64,7 @@ def init_database():
             new_product.modello = new_brand
             new_product.nome = products[b]["nome"][p]
             new_product.descrizione = products[b]["descrizione"][p]
-            new_product.immagine = new_product.nome.replace(" ", "").lower()+".png"
+            new_product.immagine = 'prodotti/' + new_product.nome.replace(" ", "").lower()+".png"
             new_product.data_pub = timezone.now()
             new_product.save()
 

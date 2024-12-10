@@ -19,7 +19,7 @@
                     {% for prodotto in prodotti %} <!-- Per ogni prodotto esistente -->
                         <div class="col-md-4">
                             <div class="card product-card mb-4 shadow-sm">
-                                <img height="auto" src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="card-img-top" alt="{{ prodotto.nome }}">
+                                <img height="auto" src="{{prodotto.immagine.url}}" class="card-img-top" alt="{{ prodotto.nome }}">
                                 
                                 <div class="card-body">
                                     <h5 class="card-title">{{prodotto.modello.nome}} {{ prodotto.nome }}</h5>
@@ -37,7 +37,7 @@
                     <div class="col-md">
                         <div class="card product-card mb shadow-sm">
                             <div class="card-body">
-                                <h2 style="text-align: center;"class="card-title">Nessuno articolo in pronta consegna.</h2>
+                                <h2 style="text-align: center;"class="card-title">Nessuno articolo disponibile.</h2>
                             </div>
                         </div>
                     </div>

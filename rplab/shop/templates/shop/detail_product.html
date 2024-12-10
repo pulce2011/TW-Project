@@ -18,7 +18,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="img-fluid" alt="{{ prodotto.nome }}">
+                <img src="{{prodotto.immagine.url}}" class="img-fluid" alt="{{ prodotto.nome }}">
             </div>
 
             <div class="col-md-6">

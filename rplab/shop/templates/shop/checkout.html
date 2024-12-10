@@ -21,7 +21,7 @@
                         <div class="card-body">
 
                             <div class="col-md-12">
-                                <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="img-fluid" alt="{{ prodotto.nome }}">
+                                <img src="{{prodotto.immagine.url}}" class="img-fluid" alt="{{ prodotto.nome }}">
                             </div>
 
                             <h2 class="mb-3">Dettagli:</h4>
