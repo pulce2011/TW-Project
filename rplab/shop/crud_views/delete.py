@@ -2,10 +2,11 @@ from django.views.generic import DeleteView
 from shop.forms import *
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 # Vista per selezionare il brand da eliminare
-
+@staff_member_required
 def select_brand_to_delete(request):
     if request.method == 'POST':
         form = BrandSelectionForm(request.POST)
@@ -19,7 +20,7 @@ def select_brand_to_delete(request):
 
 
 # Vista per selezionare il prodotto da eliminare
-
+@staff_member_required
 def select_prodotto_to_delete(request):
     if request.method == 'POST':
         form = ProdottoSelectionForm(request.POST)
@@ -33,7 +34,7 @@ def select_prodotto_to_delete(request):
 
 
 # Vista per selezionare il dettaglio da eliminare
-
+@staff_member_required
 def select_dettaglio_to_delete(request):
     if request.method == 'POST':
         form = DettaglioSelectionForm(request.POST)
@@ -47,7 +48,7 @@ def select_dettaglio_to_delete(request):
 
 
 # Vista per selezionare la comanda da eliminare
-
+@staff_member_required
 def select_comanda_to_delete(request):
     if request.method == 'POST':
         form = ComandaSelectionForm(request.POST)

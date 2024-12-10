@@ -1,0 +1,16 @@
+{% extends 'sell/home_sell.html' %}
+
+{% block content %}
+
+    <!-- Form per la selezione del modello da operare -->
+    <div class="container mt-5">
+        <h1 class="text-center">Valutazione del Dispositivo</h1>
+        <p class="text-center">Seleziona un prodotto e compila il modulo per la valutazione.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success w-100">Invia Valutazione</button>
+        </form>
+    </div>
+
+{% endblock %}

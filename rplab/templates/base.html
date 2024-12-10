@@ -59,6 +59,10 @@
               </li>
 
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'sell:homesell' %}">Vendi</a>
+              </li>
+
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'servizi' %}">Servizi</a>
               </li>
               <li class="nav-item">
@@ -79,7 +83,7 @@
 
     <br>
 
-    {% block shopnav%} {% endblock %}
+    {% block nav%} {% endblock %}
 
     <!-- Contenuto principale -->
     <main class="container py-4">

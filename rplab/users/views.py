@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from shop.models import Comanda
+from sell.models import Valutazione
 
 
 #Vista registrazione utente
@@ -25,7 +26,9 @@ def register(request):
 @login_required
 def dashboard(request):
     comande = Comanda.objects.filter(utente=request.user).order_by('-data_acquisto')
-    return render(request, 'users/dashboard.html', {"comande":comande, "utente":request.user})
+    valutazioni = Valutazione.objects.filter(utente=request.user).order_by('-id')
+    return render(request, 'users/dashboard.html', {"comande":comande,
+                                                    "valutazioni":valutazioni,})
 
 
 #Vista logout utente

@@ -1,6 +1,7 @@
 from shop.models import *
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 # Classe per creare brand
