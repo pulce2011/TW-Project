@@ -6,64 +6,68 @@
 
 {% block content %}
 
-    <!-- Card Riepilogo Ordine -->
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card">
-                    
-                    <!-- Titolo -->
-                    <div class="card-header text-center">
-                        <h3>Riepilogo Ordine</h3>
-                    </div>
+    {% if user.is_authenticated %}
 
-                    <div class="card-body">
-
-                        <div class="col-md-12">
-                            <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="img-fluid" alt="{{ prodotto.nome }}">
+        <!-- Card Riepilogo Ordine -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card">
+                        
+                        <!-- Titolo -->
+                        <div class="card-header text-center">
+                            <h3>Riepilogo Ordine</h3>
                         </div>
 
-                        <h2 class="mb-3">Dettagli:</h4>
+                        <div class="card-body">
 
-                        <div class="mb-3">
-                            <strong>Prodotto:</strong> {{ prodotto.nome }}
-                        </div>
+                            <div class="col-md-12">
+                                <img src="{% static 'prodotti/'|add:prodotto.modello.nome|add:'/'|add:prodotto.immagine %}" class="img-fluid" alt="{{ prodotto.nome }}">
+                            </div>
 
-                        <div class="mb-3">
-                            <strong>Condizione:</strong> {{ dettaglio.condizione|capfirst }} <!-- Usa capfirst per capitalizzare il nome della condizione -->
-                        </div>
+                            <h2 class="mb-3">Dettagli:</h4>
 
-                        <div class="mb-3">
-                            <strong>Descrizione:</strong> {{ prodotto.descrizione }}
-                        </div>
+                            <div class="mb-3">
+                                <strong>Prodotto:</strong> {{ prodotto.nome }}
+                            </div>
 
-                        <div class="mb-3">
-                            <strong>Prezzo:</strong> €{{ dettaglio.prezzo }}
-                        </div>
+                            <div class="mb-3">
+                                <strong>Condizione:</strong> {{ dettaglio.condizione|capfirst }} <!-- Usa capfirst per capitalizzare il nome della condizione -->
+                            </div>
 
-                        <div class="mb-3">
-                            {% if dettaglio.quantita > 0 %} <!-- Se prodotto disponibile -->
-                            <strong>Quantità disponibile:</strong> {{ dettaglio.quantita }}
-                            <div class="text-center">
+                            <div class="mb-3">
+                                <strong>Descrizione:</strong> {{ prodotto.descrizione }}
+                            </div>
 
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success">Acquista</button>
+                            <div class="mb-3">
+                                <strong>Prezzo:</strong> €{{ dettaglio.prezzo }}
+                            </div>
+
+                            <div class="mb-3">
+                                {% if dettaglio.quantita > 0 %} <!-- Se prodotto disponibile -->
+                                <strong>Quantità disponibile:</strong> {{ dettaglio.quantita }}
+                                <div class="text-center">
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-success">Acquista</button>
+                                        <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
+                                    </form>
+                                </div>
+                                {% else %} <!-- Se prodotto NON disponibile -->
+                                <strong>Quantità disponibile:</strong> <p style="color: red; display: inline;"> {{ dettaglio.quantita }}</div>
+                                <div class="text-center">
+                                    <a class="btn btn-danger">Non disponibile</a>
                                     <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
-                                </form>
+                                </div>
+                                {% endif %}
                             </div>
-                            {% else %} <!-- Se prodotto NON disponibile -->
-                            <strong>Quantità disponibile:</strong> <p style="color: red; display: inline;"> {{ dettaglio.quantita }}</div>
-                            <div class="text-center">
-                                <a class="btn btn-danger">Non disponibile</a>
-                                <a href="{% url 'shop:acquista' prodotto.pk%}" class="btn btn-secondary">Indietro</a>
-                            </div>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+    {% endif %}
 
 {% endblock %}

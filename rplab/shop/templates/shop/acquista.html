@@ -2,32 +2,36 @@
 
 {% block content %}
 
-    <div class="container">
+    {% if user.is_authenticated %}
 
-        <!-- Form -->
-        <div class="card shadow">
-            <div class="card-header">
-                Seleziona la Condizione
+        <div class="container">
+
+            <!-- Form -->
+            <div class="card shadow">
+                <div class="card-header">
+                    Seleziona la Condizione
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="condizione">Scegli la Condizione del Prodotto:</label>
+                            {{ form.condizione }}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-block ">Conferma</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="condizione">Scegli la Condizione del Prodotto:</label>
-                        {{ form.condizione }}
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-block ">Conferma</button>
-                    </div>
-                </form>
+
+            <!-- Indietro -->
+            <div class="back-link">
+                <a href="{% url 'shop:prodotti' %}" class="btn btn-link">Torna indietro</a>
             </div>
+            
         </div>
 
-        <!-- Indietro -->
-        <div class="back-link">
-            <a href="{% url 'shop:prodotti' %}" class="btn btn-link">Torna indietro</a>
-        </div>
-        
-    </div>
+    {% endif %}
 
 {% endblock %}
