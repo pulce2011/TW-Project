@@ -1,11 +1,10 @@
 PRIORITY:
-- Creare pagine 404 ed errori simili (quando si acquista iphone senza disponibilità)
 - Sezione vendi
 
-
+OTHERS:
+- Creare pagina 404 ed errori simili (quando si acquista iphone senza disponibilità)
 
 FACOLTATIVO:
 - aggiungere colore e capacità ai modelli
 - filtrare prodotti in base a prezzo, data, condizione, 
-- Aggiungere foto direttamente dall'interfaccia admin
 - Inviare mail ad acquisto completato   
