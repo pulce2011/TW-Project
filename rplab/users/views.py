@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
-from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView, ListView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import logout
 from shop.models import Comanda
 from sell.models import Valutazione
+from .forms import *
+from .crud_views.create import *
+from .crud_views.update import *
+from .crud_views.delete import *
 
 
 #Vista registrazione utente
@@ -54,12 +58,40 @@ def all_comande_staff(request):
                                                             "title":"Tutte le comande:"})
                                                                 
 
-
 # Vista tutte le valutazioni
 @staff_member_required
 def all_valutazioni_staff(request):
     valutazioni = Valutazione.objects.all()
     return render(request, 'users/staff_all_valutazioni.html', {"valutazioni_attive":valutazioni,
                                                             "title":"Tutte le valutazioni:"})
-                                                            
 
+
+# Classe Lista Utenti
+
+class UserListView(ListView):
+    model = User
+    template_name = 'users/user_list.html'
+    context_object_name = 'utente'
+
+
+# Classe Dettaglio Utente
+                                                    
+class UserDetailView(DetailView):
+    model = User
+    template_name = 'users/user_detail.html'
+    context_object_name = 'utente'
+
+
+# Vista pagina homepage per le operazione CRUD
+
+@staff_member_required
+def crud_operations(request):
+    operation = request.GET.get('operazione')
+    model = request.GET.get('modello')
+
+    if operation and model:
+        url_name = f"{model}_{operation}" 
+        print("URL_NAME: " + url_name) # Es: "brand_create"
+        return redirect('users:' + url_name)
+    else:
+        return render(request, "users/CRUD/home_crud.html")

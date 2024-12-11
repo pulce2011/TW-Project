@@ -6,9 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from .forms import *
 from .models import *
-from .crud_views.create import *
-from .crud_views.update import *
-from .crud_views.delete import *
 
 
 #Vista HomeShop
@@ -142,18 +139,3 @@ def acquistoeffettuato(request, utente_pk, dettaglio_pk):
         dettaglio.save()
 
     return render(request, 'shop/acquisto_effettuato.html', {'utente':utente, 'dettagli':dettaglio})
-
-
-# Vista pagina homepage per le operazione CRUD
-
-@staff_member_required
-def crud_operations(request):
-    operation = request.GET.get('operazione')
-    model = request.GET.get('modello')
-
-    if operation and model:
-        url_name = f"{model}_{operation}" 
-        print("URL_NAME: " + url_name) # Es: "brand_create"
-        return redirect('shop:' + url_name)
-    else:
-        return render(request, "shop/CRUD/home_crud.html")

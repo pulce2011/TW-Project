@@ -1,0 +1,59 @@
+{% extends 'users/dashboard_base.html' %}
+
+{% block dashboard %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>Dettagli dell'utente: {{ utente.username }}</h2>
+            </div>
+            <div class="card-body">
+                <!-- Mostra informazioni principali -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Username:</strong> {{ utente.username }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Email:</strong> {{ utente.email }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Nome:</strong> {{ utente.first_name }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Cognome:</strong> {{ utente.last_name }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Data di registrazione:</strong> {{ utente.date_joined }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Ultimo accesso:</strong> {{ utente.last_login }}</p>
+                    </div>
+                </div>
+
+                <!-- Se l'utente ha un profilo aggiuntivo -->
+                {% if utente.profile %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Nome completo:</strong> {{ utente.profile.full_name }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Telefono:</strong> {{ utente.profile.phone }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+
+                <!-- Altri dettagli personalizzati -->
+                <div class="mt-4">
+                    <a href="#" class="btn btn-primary">Modifica profilo</a>
+                    <a href="#" class="btn btn-secondary">Torna alla lista utenti</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

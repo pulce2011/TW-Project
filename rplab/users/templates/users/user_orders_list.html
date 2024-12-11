@@ -12,6 +12,7 @@
                         <th>Memoria</th>
                         <th>Prezzo Totale</th>
                         <th>Data</th>
+                        <th>Stato</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,11 @@
                         <td>{{ comanda.dettagli.memoria }} GB</td>
                         <td>{{ comanda.dettagli.prezzo }} €</td>
                         <td>{{ comanda.data_acquisto }}</td>
+                        {% if not comanda.attiva %}
+                            <td>✔</td>
+                        {% else %}
+                            <td>⏳</td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

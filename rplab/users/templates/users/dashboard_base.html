@@ -30,12 +30,16 @@
         {% endblock %}
 
         <div class="mt-5 text-center">
-            <a href="{% url 'shop:homeshop' %}" class="btn btn-primary">Acquista</a>
-            <a href="{% url 'sell:homesell' %}" class="btn btn-primary">Vendi</a>
+            {% if not user.is_admin and not user.is_staff%}
+                <a href="{% url 'shop:homeshop' %}" class="btn btn-primary">Acquista</a>
+                <a href="{% url 'sell:homesell' %}" class="btn btn-primary">Vendi</a>
+            {% endif %}
+            
             <a href="{% url 'users:logout' %}" class="btn btn-danger">Logout</a>
 
             {% if user.is_staff or user.is_superuser %}
-                <a href="{% url 'shop:gestione' %}" class="btn btn-success">Gestione</a>
+                <a href="{% url 'users:gestione' %}" class="btn btn-success">Gestione</a>
+                <a href="{% url 'users:userlist' %}" class="btn btn-primary">Lista Utenti</a>
             {% endif %}
         </div>
     {% endif %}

@@ -1,6 +1,6 @@
-{% extends 'shop/base_shop.html' %}
+{% extends 'users/dashboard_base.html' %}
 
-{% block content %}
+{% block dashboard %}
 
     {% if user.is_staff or user.is_superuser %}
 
@@ -16,7 +16,7 @@
                 {% csrf_token %}
                 <div class="text-center">
                     <button type="submit" class="btn btn-danger">Elimina</button>
-                    <a href="{% url 'shop:gestione' %}" class="btn btn-secondary">Annulla</a>
+                    <a href="{% url 'users:gestione' %}" class="btn btn-secondary">Annulla</a>
                 </div>
             </form>
         </div>

@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Acquirente</th>
                         <th>Brand</th>
                         <th>Modello</th>
                         <th>Condizione</th>
@@ -26,6 +27,7 @@
                     {% for comanda in comande_attive %}
                     <tr>
                         <td>{{ comanda.pk }}</td>
+                        <td><a href="{% url 'users:userdetail' comanda.utente.id %}" class="btn-primary">{{ comanda.utente.username }}</a></td>
                         <td>{{ comanda.dettagli.prodotto.modello.nome }}</td>
                         <td>{{ comanda.dettagli.prodotto.nome }}</td>
                         <td>{{ comanda.dettagli.condizione }}</td>

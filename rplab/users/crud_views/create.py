@@ -1,7 +1,6 @@
 from shop.models import *
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from django.contrib.admin.views.decorators import staff_member_required
 
 
 # Classe per creare brand
@@ -9,8 +8,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 class BrandCreateView(CreateView):
     model = Brand
     fields = ['nome', 'immagine']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('shop:gestione')
+    template_name = 'users/CRUD/create.html'
+    success_url = reverse_lazy('users:gestione')
 
 
 # Classe per creare prodotto
@@ -18,8 +17,8 @@ class BrandCreateView(CreateView):
 class ProdottoCreateView(CreateView):
     model = Prodotto
     fields = ['nome', 'descrizione', 'modello', 'immagine']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('shop:gestione')
+    template_name = 'users/CRUD/create.html'
+    success_url = reverse_lazy('users:gestione')
 
 
 # Classe per creare dettaglio
@@ -27,8 +26,8 @@ class ProdottoCreateView(CreateView):
 class DettaglioCreateView(CreateView):
     model = Dettagli
     fields = ['prodotto', 'condizione', 'prezzo', 'quantita']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('shop:gestione')
+    template_name = 'users/CRUD/create.html'
+    success_url = reverse_lazy('users:gestione')
 
 
 # Classe per creare comanda
@@ -36,5 +35,5 @@ class DettaglioCreateView(CreateView):
 class ComandaCreateView(CreateView):
     model = Comanda
     fields = ['utente', 'dettagli']
-    template_name = 'shop/CRUD/create.html'
-    success_url = reverse_lazy('shop:gestione')
+    template_name = 'users/CRUD/create.html'
+    success_url = reverse_lazy('users:gestione')

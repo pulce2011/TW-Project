@@ -16,6 +16,7 @@
                         <th>Bloccato</th>
                         <th>Commento</th>
                         <th>Valore</th>
+                        <th>Stato</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +61,12 @@
                         {% endif %}
 
                         <td>{{ valutazione.valore }} €</td>
+
+                        {% if not valutazione.attiva %}
+                            <td>✔</td>
+                        {% else %}
+                            <td>⏳</td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Acquirente</th>
                         <th>Brand</th>
                         <th>Prodotto</th>
                         <th>Memoria</th>
@@ -30,6 +31,7 @@
                     {% for valutazione in valutazioni_attive %}
                     <tr>
                         <td>{{ valutazione.pk }}</td>
+                        <td><a href="{% url 'users:userdetail' valutazione.utente.id %}" class="btn-primary">{{ valutazione.utente.username }}</a></td>
                         <td>{{ valutazione.prodotto.modello.nome }}</td>
                         <td>{{ valutazione.prodotto.nome }}</td>
                         <td>{{ valutazione.memoria }} GB</td>
