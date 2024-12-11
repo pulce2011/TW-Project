@@ -10,7 +10,7 @@ urlpatterns = [
     path('prodotto/<int:pk>/', views.ProductDetailView.as_view(), name='product_detail'), # Prodotto nel dettaglio
     path('brand/<str:nome>/', views.ExploreProdcutsListView.as_view(), name="explore_brand"), # Lista prodotti in base al brand
     path('prodotto/<int:pk>/acquista/', views.acquista, name='acquista'), # Acquista
-    path('checkout/<str:condizione>/<int:prodotto_pk>/', views.checkout, name='checkout'), # Checkout
+    path('checkout/<int:memoria>/<str:condizione>/<int:prodotto_pk>/', views.checkout, name='checkout'), # Checkout
     path('confirmed/<int:utente_pk>/<int:dettaglio_pk>', views.acquistoeffettuato, name='confermato'), # Conferma ordine
     path('search/', views.search, name='search'), # Cerca prodotti
 

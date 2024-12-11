@@ -53,17 +53,24 @@ class Condizione(models.TextChoices):
     used = 'used', 'Usato'
     refurbished = 'refurbished', 'Ricondizionato'
 
+class Memorie(models.IntegerChoices):
+    GB_64 = 64, '64 GB'
+    GB_128 = 128, '128 GB'
+    GB_256 = 256, '256 GB'
+    GB_512 = 512, '512 GB'
+    TB_1 = 1024, '1 TB'
 
 # Prodotto in dettaglio (quantità, condizione, prezzo...)
 
 class Dettagli(models.Model):
     prodotto = models.ForeignKey(Prodotto, on_delete=models.CASCADE, related_name='prodotto')
     condizione = models.CharField(max_length=15, choices=Condizione.choices)
+    memoria = models.PositiveIntegerField(choices=Memorie.choices)
     prezzo = models.DecimalField(max_digits=10, decimal_places=2)
     quantita = models.PositiveIntegerField(default=0)
 
     class Meta:
-        unique_together = ('prodotto', 'condizione')
+        unique_together = ('prodotto', 'condizione', 'memoria')
         verbose_name_plural = "Dettagli Prodotto"
 
     def __str__(self):

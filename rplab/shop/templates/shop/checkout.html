@@ -35,6 +35,10 @@
                             </div>
 
                             <div class="mb-3">
+                                <strong>Memoria:</strong> {{ dettaglio.memoria }} GB
+                            </div>
+
+                            <div class="mb-3">
                                 <strong>Descrizione:</strong> {{ prodotto.descrizione }}
                             </div>
 
@@ -45,7 +49,7 @@
                             <div class="mb-3">
                                 {% if dettaglio.quantita > 0 %} <!-- Se prodotto disponibile -->
 
-                                    <strong>Quantità disponibile:</strong> {{ dettaglio.quantita }}
+                                    <strong>Quantità disponibile:</strong> {{ dettaglio.quantita }} pz
                                     <div class="text-center">
 
                                         <form method="post">

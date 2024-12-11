@@ -26,7 +26,7 @@ def init_database():
                        "Annunciato nel 2019, Apple iPhone 11 Pro è uno degli smartphone top di gamma dell'azienda americana. E' dotato di un display Super Retina XDR OLED con cornici di dimensioni ridotte, dalla risoluzione di 1125x2436 pixels e diagonale di 5,8 pollici. Il refresh rate è di 60Hz, mentre quale sistema operativo troviamo ovviamente il proprietario iOS al pari di tutti gli altri smartphone Apple.",
                        "Ha debuttato sul mercato nell'anno lo smartphone iPhone 12, uno tra i modelli di fascia più alta proposti da Apple. E' caratterizzato da un display Super Retina XDR OLED con diagonale di 6,1 pollici., dotato di cornici di dimensioni ridotte, che opera ad una risoluzione di 1170x2532 pixels con refresh rate di 60Hz. Il sistema operativo è quello proprietario iOS.",
                        "iPhone 14 Pro Max è uno degli smartphone top di gamma di Apple annunciati nel 2022. E' basato su un display Super Retina XDR OLED LTPO con cornici di dimensioni ridotte, dalla risoluzione di 1290x2796 pixel e diagonale di 6,7 pollici. Il refresh rate è di 120Hz, mentre quale sistema operativo troviamo il proprietario iOS."],
-        "prezzo":[143.99, 208.87, 250, 324.99, 744.99]
+        "prezzo":[150, 208.87, 250, 324.99, 744.99]
     }, {
         "nome": ["Galaxy A52s", "Galaxy S22 Ultra", "Galaxy A12", "Galaxy Z Flip 3", "Galaxy S24 FE"],
         "descrizione":["Samsung Galaxy A52s è un smartphone Android di buon livello, fortemente votato all'imaging, in grado di soddisfare anche l'utente più esigente. Sorprende il display Touchscreen da 6.5 pollici che pone questo Samsung al vertice della categoria. Risoluzione di 2400x1080 pixel. Scorrendo la scheda tecnica di questo Samsung Galaxy A52s, notiamo che sul versante delle funzionalità non manca davvero nulla. A cominciare dal modulo 5G che permette un trasferimento dati e una navigazione in internet eccellente, passando per la connettività Wi-fi e il GPS. Questo Samsung Galaxy A52s è un prodotto con pochi competitor per ciò che riguarda la multimedialità grazie alla fotocamera da ben 64 megapixel che permette al Samsung Galaxy A52s di scattare foto di alta qualità con una risoluzione di 9238x6928 pixel e di registrare video in 4K alla risoluzione di 3840x2160 pixel. Che dire delle dimensioni: lo spessore di 8.4mm è contenuto e rende questo Samsung Galaxy A52s molto interessante. Il suo peso è di 189g e abbiamo 4500mAh per la batteria.",
@@ -49,6 +49,13 @@ def init_database():
     condizioni = {1:'new',
                   2:'used',
                   3:'refurbished'}
+    
+    # Possibili memorie
+    memorie = {1:64,
+               2:128,
+               3:256,
+               4:512,
+               5:1024}
 
 
     #Creazione brand [nome, path_immagine]
@@ -68,22 +75,67 @@ def init_database():
             new_product.data_pub = timezone.now()
             new_product.save()
 
-            #Creazione prodotto singolo [prodotto, condizione, quantità, prezzo in base alla condizione]
-            for d in range(3):
-                new_dettaglio = Dettagli()
-                new_dettaglio.prodotto = new_product
-                new_dettaglio.condizione = condizioni[d+1]
-                new_prezzo =  products[b]["prezzo"][p]
-                if(new_dettaglio.condizione == 'new'):
-                    new_dettaglio.prezzo = new_prezzo
-                elif(new_dettaglio.condizione == 'used'):
-                    new_dettaglio.prezzo = new_prezzo*0.8
-                else:
-                    new_dettaglio.prezzo = new_prezzo*0.9
+            for m in memorie:
+                for c in condizioni:
+                    new_dettaglio = Dettagli()
+                    new_dettaglio.prodotto = new_product
+                    new_dettaglio.condizione = condizioni[c]
+                    new_dettaglio.memoria = memorie[m]
+                    new_prezzo =  products[b]["prezzo"][p]
 
-                new_dettaglio.quantita = random.randint(0,3)
-                new_dettaglio.save()
-                
+                    if(new_dettaglio.memoria == 64): #Se memoria = 64, prezzo uguale
+                        pass
+                    elif(new_dettaglio.memoria == 128): #Se memoria = 128, prezzo + 10%
+                        new_prezzo *= 1.1
+                    elif(new_dettaglio.memoria == 256): #Se memoria = 256, prezzo + 20%
+                        new_prezzo *= 1.2
+                    elif(new_dettaglio.memoria == 512): #Se memoria = 512, prezzo + 30 %
+                        new_prezzo *= 1.3
+                    else: #Se memoria = 1024, prezzo + 35 %
+                        new_prezzo *=1.35 
+
+                    if(new_dettaglio.condizione == 'new'): #Se condizione = new, prezzo uguale
+                        pass
+                    elif(new_dettaglio.condizione == 'used'): #Se condizione = used, prezzo - 20%
+                        new_prezzo *= 0.8
+                    else: #Se condizione = refurbished, prezzo - 10%
+                        new_prezzo *= 0.9
+
+                    new_dettaglio.prezzo = new_prezzo
+                    new_dettaglio.quantita = random.randint(0,5)
+                    new_dettaglio.save()
+
+
+
+
+
+
+
+
+
+            '''
+            #Creazione prodotto singolo [prodotto, condizione, quantità, memoria prezzo in base alla condizione]
+            for d in condizioni:
+                for m in memorie:
+                    new_dettaglio = Dettagli()
+                    new_dettaglio.prodotto = new_product
+                    new_dettaglio.condizione = condizioni[d+1]
+                    new_prezzo =  products[b]["prezzo"][p]
+                    new_dettaglio.memoria[m+1]
+
+                    if(m == 0):
+                        print(memorie[0])
+
+                    if(new_dettaglio.condizione == 'new'):
+                        new_dettaglio.prezzo = new_prezzo
+                    elif(new_dettaglio.condizione == 'used'):
+                        new_dettaglio.prezzo = new_prezzo*0.8
+                    else:
+                        new_dettaglio.prezzo = new_prezzo*0.9
+
+                    new_dettaglio.quantita = random.randint(0,3)
+                    new_dettaglio.save()
+                '''
 
     #Test funzionamento
     print("[LOG] Brands: " + str(Brand.objects.all()))

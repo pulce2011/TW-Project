@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/colors.css' %}">
+{% endblock %}
+
 {% block content%}
 
     {% if user %}
@@ -25,6 +30,7 @@
                                 <th>Brand</th>
                                 <th>Modello</th>
                                 <th>Condizione</th>
+                                <th>Memoria</th>
                                 <th>Prezzo Totale</th>
                                 <th>Data</th>
                             </tr>
@@ -35,8 +41,9 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ comanda.dettagli.prodotto.modello.nome }}</td>
                                 <td>{{ comanda.dettagli.prodotto.nome }}</td>
-                                <td>{{ comanda.dettagli.condizione }}
-                                <td>{{ comanda.dettagli.prezzo }}</td>
+                                <td>{{ comanda.dettagli.condizione }}</td>
+                                <td>{{ comanda.dettagli.memoria }} GB</td>
+                                <td>{{ comanda.dettagli.prezzo }} €</td>
                                 <td>{{ comanda.data_acquisto }}</td>
                             </tr>
                             {% endfor %}
@@ -58,6 +65,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Brand</th>
                                 <th>Prodotto</th>
                                 <th>Memoria</th>
                                 <th>Condizione</th>
@@ -73,15 +81,44 @@
                             {% for valutazione in valutazioni %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
+                                <td>{{ valutazione.prodotto.modello.nome }}</td>
                                 <td>{{ valutazione.prodotto.nome }}</td>
-                                <td>{{ valutazione.memoria }}</td>
+                                <td>{{ valutazione.memoria }} GB</td>
                                 <td>{{ valutazione.condizione }}
-                                <td>{{ valutazione.schermo_rotto }}</td>
-                                <td>{{ valutazione.back_rotto }}</td>
-                                <td>{{ valutazione.stato_batteria }}</td>
-                                <td>{{ valutazione.bloccato }}</td>
-                                <td>{{ valutazione.commento }}</td>
-                                <td>{{ valutazione.valore }}</td>
+
+                                {% if valutazione.schermo_rotto %}
+                                    <td>✔</td>
+                                {% else %}
+                                    <td>❌</td>
+                                {% endif %}
+
+                                {% if valutazione.back_rotto %}
+                                    <td>✔</td>
+                                {% else %}
+                                    <td>❌</td>
+                                {% endif %}
+                                
+                                <td>{{ valutazione.stato_batteria }} %</td>
+
+                                {% if valutazione.bloccato %}
+                                    <td>✔</td>
+                                {% else %}
+                                    <td>❌</td>
+                                {% endif %}
+                                
+                                {% if valutazione.commento %}
+                                    <td><a class="btn-primary" type="button"
+                                        data-bs-toggle="popover" data-bs-placement="right"
+                                        data-bs-custom-class="custom-popover"
+                                        data-bs-title="Commento"
+                                        data-bs-content="{{valutazione.commento}}">
+                                        Leggi
+                                    </a></td>
+                                {% else %}
+                                <td>No</td>
+                                {% endif %}
+
+                                <td>{{ valutazione.valore }} €</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -104,5 +141,9 @@
             {% endif %}
         </div>
     {% endif %}
+
+
+    <!-- Script Popper per funzionamento "Leggi commento." -->
+    <script src="{% static 'js/popper.js' %}"></script>
 
 {% endblock %}

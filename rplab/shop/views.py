@@ -78,7 +78,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            context["prezzoda"] = Dettagli.objects.get(prodotto=self.object, condizione='used').prezzo
+            context["prezzoda"] = Dettagli.objects.get(prodotto=self.object, condizione='used', memoria=64).prezzo
         except:
             context["prezzoda"] = " non disponibile."
         return context
@@ -92,8 +92,9 @@ def acquista(request, pk):
         form = CondizioneProdottoForm(request.POST)
         if form.is_valid():
             condizione = form.cleaned_data['condizione']
+            memoria = form.cleaned_data['memoria']
             prodotto = get_object_or_404(Prodotto, pk=pk)
-            return redirect('shop:checkout', condizione=condizione, prodotto_pk=prodotto.pk)
+            return redirect('shop:checkout', memoria=memoria, condizione=condizione, prodotto_pk=prodotto.pk)
     else:
         form = CondizioneProdottoForm()
         return render(request, 'shop/acquista.html', {"form":form})
@@ -102,9 +103,9 @@ def acquista(request, pk):
 #Vista pagina checkout
 
 @login_required
-def checkout(request, condizione, prodotto_pk):
+def checkout(request, memoria, condizione, prodotto_pk):
     prodotto = get_object_or_404(Prodotto, pk=prodotto_pk)
-    dettaglio = get_object_or_404(Dettagli, prodotto=prodotto, condizione=condizione)
+    dettaglio = get_object_or_404(Dettagli, prodotto=prodotto, condizione=condizione, memoria=memoria)
 
     if request.method == "POST" and request.user.is_authenticated:
         user = request.user

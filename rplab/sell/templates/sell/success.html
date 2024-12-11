@@ -2,9 +2,15 @@
 
 {% block content %}
 
-  <div class="alert alert-success">
-    <h2>La valutazione del tuo telefono è stata completata con successo!</h2>
-    <p>Il nostro team ti contatterà presto per ulteriori dettagli.</p>
-  </div>
+  <!-- Pagina di acquisto confermato -->
+  <div class="container text-center mt-5">
+    <div class="alert alert-success" role="alert">
+        <h1 class="display-4">Grazie per la tua valutazione!</h1>
+        <p class="lead">La valutazione del tuo telefono è stata completata con successo!</p>
+        <hr>
+        <p>Puoi vedere tutte le tue valutazioni nella sezione <a href="{% url 'users:dashboard' %}">dashboard</a></p>
+    </div>
+    <a href="{% url 'sell:homesell' %}" class="btn btn-primary btn-lg mt-3">Vendi ancora</a>
+</div>
   
 {% endblock %}
