@@ -83,7 +83,7 @@ class Comanda(models.Model):
     utente = models.ForeignKey(User, on_delete=models.CASCADE, related_name="utente")
     dettagli = models.ForeignKey(Dettagli, on_delete=models.CASCADE, related_name="prodotto_dettaglio")  # Dettagli dell'acquisto (condizione, prezzo)
     data_acquisto = models.DateTimeField(auto_now_add=True)
-    attiva = models.BooleanField(blank=False, null=False, default=True)
+    completata = models.BooleanField(blank=False, null=False, default=False)
 
     def __str__(self):
         return f"{self.id}: Acquisto di '{self.dettagli.prodotto.nome}' da '{self.utente.username}'"

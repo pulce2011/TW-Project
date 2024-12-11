@@ -31,9 +31,10 @@ def register(request):
 @login_required
 def dashboard(request):
     comande = Comanda.objects.filter(utente=request.user).order_by('-data_acquisto')
-    comande_attive = Comanda.objects.all().filter(attiva=True).order_by('-data_acquisto')
     valutazioni = Valutazione.objects.filter(utente=request.user).order_by('-id')
-    valutazioni_attive = Valutazione.objects.all().filter(attiva=True).order_by('id')
+
+    comande_attive = Comanda.objects.all().filter(completata=False).order_by('-data_acquisto')
+    valutazioni_attive = Valutazione.objects.all().filter(completata=False).order_by('id')
 
     return render(request, 'users/dashboard.html', {"comande":comande,
                                                     "valutazioni":valutazioni,

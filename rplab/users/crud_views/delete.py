@@ -61,6 +61,20 @@ def select_comanda_to_delete(request):
     return render(request, 'users/CRUD/select_model_to_operate.html', {'form': form})
 
 
+# Vista per selezionare la valutazione da eliminare
+@staff_member_required
+def select_valutazione_to_delete(request):
+    if request.method == 'POST':
+        form = ValutazioneSelectionForm(request.POST)
+        if form.is_valid():
+            selected_valutazione = form.cleaned_data['selection']
+            return redirect('users:selected_valutazione_delete', pk=selected_valutazione.pk)
+    else:
+        form = ValutazioneSelectionForm()
+
+    return render(request, 'users/CRUD/select_model_to_operate.html', {'form': form})
+
+
 # Classe per eliminare brand
 
 class BrandDeleteView(DeleteView):
@@ -76,7 +90,7 @@ class ProdottoDeleteView(DeleteView):
     model = Prodotto
     template_name = "users/CRUD/delete.html"
     context_object_name = 'model'
-    success_url = reverse_lazy('users:gestione')
+    success_url = reverse_lazy('users:dashboard')
 
 
 # Classe per eliminare dettaglio
@@ -85,7 +99,7 @@ class DettaglioDeleteView(DeleteView):
     model = Dettagli
     template_name = "users/CRUD/delete.html"
     context_object_name = 'model'
-    success_url = reverse_lazy('users:gestione')
+    success_url = reverse_lazy('users:dashboard')
 
 
 # Classe per eliminare comanda
@@ -94,4 +108,12 @@ class ComandaDeleteView(DeleteView):
     model = Comanda
     template_name = "users/CRUD/delete.html"
     context_object_name = 'model'
-    success_url = reverse_lazy('users:gestione')
+    success_url = reverse_lazy('users:dashboard')
+
+# Classe per eliminare valutazione
+
+class ValutazioneDeleteView(DeleteView):
+    model = Valutazione
+    template_name = "users/CRUD/delete.html"
+    context_object_name = 'model'
+    success_url = reverse_lazy('users:dashboard')

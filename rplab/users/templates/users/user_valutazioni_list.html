@@ -62,7 +62,7 @@
 
                         <td>{{ valutazione.valore }} €</td>
 
-                        {% if not valutazione.attiva %}
+                        {% if valutazione.completata %}
                             <td>✔</td>
                         {% else %}
                             <td>⏳</td>

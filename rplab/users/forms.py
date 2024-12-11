@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.validators import EmailValidator
 from shop.models import *
+from sell.models import *
 
 class UserRegistrationForm(UserCreationForm):
     numero_di_telefono = forms.CharField(min_length=10, max_length=10, required=True)
@@ -34,3 +35,9 @@ class DettaglioSelectionForm(forms.Form):
 
 class ComandaSelectionForm(forms.Form):
     selection = forms.ModelChoiceField(queryset=Comanda.objects.all(), empty_label="Seleziona una Comanda", widget=forms.Select)
+
+
+# Form per la selezione della Valutazione 
+
+class ValutazioneSelectionForm(forms.Form):
+    selection = forms.ModelChoiceField(queryset=Valutazione.objects.all(), empty_label="Seleziona una Comanda", widget=forms.Select)

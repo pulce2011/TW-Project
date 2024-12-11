@@ -61,6 +61,20 @@ def select_comanda_to_update(request):
     return render(request, 'users/CRUD/select_model_to_operate.html', {'form': form})
 
 
+# Vista per selezionare la valutazione da modificare
+@staff_member_required
+def select_valutazione_to_update(request):
+    if request.method == 'POST':
+        form = ValutazioneSelectionForm(request.POST)
+        if form.is_valid():
+            selected_valutazione = form.cleaned_data['selection']
+            return redirect('users:selected_comanda_update', pk=selected_valutazione.pk)
+    else:
+        form = ValutazioneSelectionForm()
+
+    return render(request, 'users/CRUD/select_model_to_operate.html', {'form': form})
+
+
 # Classe per agggiornare brand
 
 class BrandUpdateView(UpdateView):
@@ -78,7 +92,7 @@ class ProdottoUpdateView(UpdateView):
     fields = ['nome', 'descrizione', 'modello', 'immagine']
     template_name = 'users/CRUD/update.html'
     context_object_name = 'model'
-    success_url = reverse_lazy('users:gestione')
+    success_url = reverse_lazy('users:gestiodashboardne')
 
 
 # Classe per agggiornare dettaglio
@@ -88,14 +102,23 @@ class DettaglioUpdateView(UpdateView):
     fields = ['prodotto', 'condizione', 'prezzo', 'quantita']
     template_name = 'users/CRUD/update.html'
     context_object_name = 'model'
-    success_url = reverse_lazy('users:gestione')
+    success_url = reverse_lazy('users:dashboard')
 
 
 # Classe per agggiornare comanda
 
 class ComandaUpdateView(UpdateView):
     model = Comanda
-    fields = ['utente', 'dettagli']
+    fields = ['utente', 'dettagli', 'completata']
     template_name = 'users/CRUD/update.html'
     context_object_name = 'model'
-    success_url = reverse_lazy('users:gestione')
+    success_url = reverse_lazy('users:dashboard')
+
+# Classe per agggiornare valutazione
+
+class ValutazioneUpdateView(UpdateView):
+    model = Valutazione
+    fields = ['utente', 'prodotto', 'memoria', 'condizione', 'schermo_rotto', 'back_rotto', 'stato_batteria', 'bloccato', 'commento', 'valore', 'completata']
+    template_name = 'users/CRUD/update.html'
+    context_object_name = 'model'
+    success_url = reverse_lazy('users:dashboard')

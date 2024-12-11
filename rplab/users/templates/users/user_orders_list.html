@@ -10,7 +10,7 @@
                         <th>Modello</th>
                         <th>Condizione</th>
                         <th>Memoria</th>
-                        <th>Prezzo Totale</th>
+                        <th>Prezzo</th>
                         <th>Data</th>
                         <th>Stato</th>
                     </tr>
@@ -25,7 +25,7 @@
                         <td>{{ comanda.dettagli.memoria }} GB</td>
                         <td>{{ comanda.dettagli.prezzo }} €</td>
                         <td>{{ comanda.data_acquisto }}</td>
-                        {% if not comanda.attiva %}
+                        {% if comanda.completata %}
                             <td>✔</td>
                         {% else %}
                             <td>⏳</td>

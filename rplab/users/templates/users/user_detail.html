@@ -1,6 +1,7 @@
 {% extends 'users/dashboard_base.html' %}
 
 {% block dashboard %}
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
@@ -35,19 +36,6 @@
                     </div>
                 </div>
 
-                <!-- Se l'utente ha un profilo aggiuntivo -->
-                {% if utente.profile %}
-                <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Nome completo:</strong> {{ utente.profile.full_name }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><strong>Telefono:</strong> {{ utente.profile.phone }}</p>
-                    </div>
-                </div>
-                {% endif %}
-
-
                 <!-- Altri dettagli personalizzati -->
                 <div class="mt-4">
                     <a href="{% url 'users:userupdate' utente.id%}" class="btn btn-primary">Modifica profilo</a>
@@ -56,4 +44,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
