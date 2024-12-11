@@ -5,15 +5,15 @@ from . import views
 app_name = "users"
 
 urlpatterns = [
-    path('register/', views.register, name='register'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', views.custom_logout, name='logout'),
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('comande/', views.all_comande_staff, name='allcomande'),
-    path('valutazioni/', views.all_valutazioni_staff, name='allvalutazioni'),
-    path('', views.UserListView.as_view(), name='userlist'),
-    path('user/<int:pk>/', views.UserDetailView.as_view(), name='userdetail'),
-    path('users/<int:pk>/edit/', views.UserUpdateView.as_view(), name='userupdate'),
+    path('register/', views.register, name='register'), # Registazione utente
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'), # Login utente
+    path('logout/', views.custom_logout, name='logout'), # Logout
+    path('dashboard/', views.dashboard, name='dashboard'), # Dashboard
+    path('comande/', views.all_comande_staff, name='allcomande'), # Tutte le comande (staff_only)
+    path('valutazioni/', views.all_valutazioni_staff, name='allvalutazioni'), # Tutte le valutazioni (staff_only)
+    path('', views.UserListView.as_view(), name='userlist'),  #Tutti gli utenti (staff_only)
+    path('user/<int:pk>/', views.UserDetailView.as_view(), name='userdetail'), # Dettagli utente
+    path('users/<int:pk>/edit/', views.UserUpdateView.as_view(), name='userupdate'), # Modifica utente
 
     # CRUD HomePage
     path('gestione', views.crud_operations, name="gestione"),

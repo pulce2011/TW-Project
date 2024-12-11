@@ -15,7 +15,7 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
+    <!-- Come funziona -->
     <section id="how-it-works" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">❓ Come funziona ❓</h2>
@@ -48,17 +48,19 @@
         </div>
     </section>
 
-    <!-- Start Evaluation Section -->
+    <!-- Inizia Valutazione -->
     <section class="py-5">
         <div class="container text-center">
             <h2 class="mb-4">Inizia la valutazione del tuo telefono</h2>
             <p class="lead">Compila il modulo per ottenere una valutazione gratuita e senza impegno.</p>
+
             {% if user.is_authenticated%}
                 <a href="{% url 'sell:valutazione' %}" class="btn btn-success btn-lg">Inizia Ora</a>
             {% else %}
                 <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Accedi</a>
                 <a href="{% url 'users:register' %}" class="btn btn-primary btn-lg">Registrati</a>
             {% endif %}
+            
             </div>
     </section>
 

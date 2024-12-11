@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 
-#Form per scegliere condizione prodotto da aquistare
+#Form per scegliere la condizione del prodotto da aquistare
 
 class CondizioneProdottoForm(forms.Form):
     CONDITION_CHOICES = [

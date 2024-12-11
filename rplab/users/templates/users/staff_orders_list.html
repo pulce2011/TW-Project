@@ -1,5 +1,5 @@
 <div class="mt-5 text-center">
-    {% if user.is_staff or user.is_superuser %}
+    {% if user.is_staff or user.is_superuser %} <!-- Se utente staff o superuser -->
 
         {% if title %}
             <h3>{{title}}</h3>
@@ -7,6 +7,7 @@
             <h3>Comande attive:</h3>
         {% endif %}
 
+        <!-- Tabella comande -->
         {% if comande_attive %}
             <table class="table table-bcomandaed">
                 <thead>
@@ -42,6 +43,7 @@
                             <td>⏳</td>
                         {% endif %}
                         
+                        <!-- Modifica -->
                         <td>
                             <a href="{% url 'users:selected_comanda_update' comanda.id %}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -50,6 +52,7 @@
                             </a>
                         </td>
                         
+                        <!-- Elimina -->
                         <td>
                             <a href="{% url 'users:selected_comanda_delete' comanda.id %}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

@@ -2,6 +2,8 @@ from django import forms
 from .models import Valutazione
 from shop.models import *
 
+# Possibili condizioni della valutazione
+
 CONDITION_CHOICES = [
         ("excellent", "Eccellente"),
         ("good", "Buono"),
@@ -10,6 +12,8 @@ CONDITION_CHOICES = [
         ("not_working", "Non funzionante"),
     ]
 
+# Possibili memorie della valutazione
+
 MEMORY_CHOICES = [
     (64, '64 GB'),
     (128, '128 GB'),
@@ -17,6 +21,9 @@ MEMORY_CHOICES = [
     (512, '512 GB'),
     (1024, '1 TB'),
     ]
+
+
+# Form per la valutazione
 
 class ValutazioneForm(forms.ModelForm):
 

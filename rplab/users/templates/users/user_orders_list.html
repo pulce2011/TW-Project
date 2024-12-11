@@ -1,7 +1,10 @@
 <div class="mt-5 text-center">
-    {% if not user.is_staff and not user.is_superuser %}
+
+    {% if not user.is_staff and not user.is_superuser %} <!-- Se utente normale -->
+    
         <h3>I tuoi ordini</h3>
-        {% if comande %}
+
+        {% if comande %} <!-- Se esistono comande associate all'utente -->
             <table class="table table-bcomandaed">
                 <thead>
                     <tr>

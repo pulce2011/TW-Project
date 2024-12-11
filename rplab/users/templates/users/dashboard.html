@@ -2,9 +2,9 @@
 
 {% block dashboard %}
 
-    {% include 'users/user_orders_list.html' %}
+    {% include 'users/user_orders_list.html' %} <!-- Lista ordini utente -->
 
-    {% include 'users/staff_orders_list.html' %}
+    {% include 'users/staff_orders_list.html' %} <!-- Lista valutazioni utenti -->
 
     {% if user.is_admin or user.is_staff%}
         <div class="text-center">
@@ -15,9 +15,9 @@
     <!-- Separator -->
     <div class="separator"></div>
 
-    {% include 'users/user_valutazioni_list.html' %}
+    {% include 'users/user_valutazioni_list.html' %} <!-- Lista di tutti gli ordini -->
 
-    {% include 'users/staff_valutazioni_list.html' %}
+    {% include 'users/staff_valutazioni_list.html' %} <!-- Lista di tutte le valutazioni -->
 
     {% if user.is_admin or user.is_staff%}
         <div class="text-center">

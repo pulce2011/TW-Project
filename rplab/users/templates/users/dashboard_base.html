@@ -9,6 +9,7 @@
 
     {% if user %}
 
+        <!-- Welcome Section -->
         <div class="text-center">
             {% if user.first_name and user.last_name%}
                 <h2>Benvenuto/a, <strong>{{user.first_name}} {{user.last_name}}</strong>!</h2>
@@ -18,9 +19,9 @@
 
             <p>Questa è la tua dashboard personale.</p>
 
-            {% if user.is_superuser%}
+            {% if user.is_superuser%} <!-- Se utente superuser -->
                 <h5><i>Sei un utente <strong>superuser</strong></i></h5>
-            {% elif user.is_staff %}
+            {% elif user.is_staff %} <!-- Se utente staff -->
                 <h5><i>Sei un utente <strong>staff</strong></i></h5>
             {% endif %}
         </div>
@@ -30,24 +31,29 @@
         {% endblock %}
 
         <div class="mt-5 text-center">
+
+            <!-- Pulsanti per utenti normali -->
             {% if not user.is_admin and not user.is_staff%}
                 <a href="{% url 'shop:homeshop' %}" class="btn btn-primary">Acquista</a>
                 <a href="{% url 'sell:homesell' %}" class="btn btn-primary">Vendi</a>
 
             {% endif %}
-
+            
+            <!-- Pulsanti per qualsiasi utente -->
             <a href="{% url 'users:dashboard' %}" class="btn btn-warning">Dashboard</a>
             <a href="{% url 'users:logout' %}" class="btn btn-danger">Logout</a>
 
+            <!-- Pulsanti per staff e superuser -->
             {% if user.is_staff or user.is_superuser %}
                 <a href="{% url 'users:gestione' %}" class="btn btn-success">Gestione</a>
                 <a href="{% url 'users:userlist' %}" class="btn btn-primary">Lista Utenti</a>
             {% endif %}
+            
         </div>
     {% endif %}
 
 
-    <!-- Script Popper per funzionamento "Leggi commento." -->
+    <!-- Script Popper per funzionamento "Leggi commento" -->
     <script src="{% static 'js/popper.js' %}"></script>
 
 {% endblock %}

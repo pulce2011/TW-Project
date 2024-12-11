@@ -3,22 +3,21 @@ from django.contrib.auth.models import User
 import os
 
 
+# Rinominare immagine brand e salvarla in percorso specifico
 
-def rename_brand_image(instance, filename):
-    # Rimuovi gli spazi e rendi il nome del prodotto tutto minuscolo
-    base_filename = instance.nome.replace(' ', '').lower()  # Rimuove gli spazi e converte in minuscolo
-    # Estensione fissa .png
+def rename_brand_image(instance):
+    base_filename = instance.nome.replace(' ', '').lower()
     new_filename = f"{base_filename}.png"
-    # Salva il file nella cartella 'prodotti'
     return os.path.join('shop/static/brands', new_filename)
 
-def rename_product_image(instance, filename):
-    # Rimuovi gli spazi e rendi il nome del prodotto tutto minuscolo
-    base_filename = instance.nome.replace(' ', '').lower()  # Rimuove gli spazi e converte in minuscolo
-    # Estensione fissa .png
+
+# Rinominare immagine prodotto e salvarla in percorso specifico
+
+def rename_product_image(instance):
+    base_filename = instance.nome.replace(' ', '').lower()
     new_filename = f"{base_filename}.png"
-    # Salva il file nella cartella 'prodotti'
     return os.path.join('shop/static/prodotti', new_filename)
+
 
 # Brand
 
@@ -30,7 +29,7 @@ class Brand(models.Model):
         return self.nome
 
 
-# Prodotti
+# Prodotto
 
 class Prodotto(models.Model):
     nome = models.CharField(max_length=200)
@@ -53,6 +52,9 @@ class Condizione(models.TextChoices):
     used = 'used', 'Usato'
     refurbished = 'refurbished', 'Ricondizionato'
 
+
+# Possibili memorie di prodotto
+
 class Memorie(models.IntegerChoices):
     GB_64 = 64, '64 GB'
     GB_128 = 128, '128 GB'
@@ -60,7 +62,7 @@ class Memorie(models.IntegerChoices):
     GB_512 = 512, '512 GB'
     TB_1 = 1024, '1 TB'
 
-# Prodotto in dettaglio (quantità, condizione, prezzo...)
+# Prodotto in dettaglio
 
 class Dettagli(models.Model):
     prodotto = models.ForeignKey(Prodotto, on_delete=models.CASCADE, related_name='prodotto')

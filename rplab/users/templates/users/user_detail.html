@@ -7,8 +7,9 @@
             <div class="card-header">
                 <h2>Dettagli dell'utente: {{ utente.username }}</h2>
             </div>
+            
+            <!-- Dettagli utente -->
             <div class="card-body">
-                <!-- Mostra informazioni principali -->
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Username:</strong> {{ utente.username }}</p>
@@ -36,7 +37,7 @@
                     </div>
                 </div>
 
-                <!-- Altri dettagli personalizzati -->
+                <!-- Operazioni -->
                 <div class="mt-4">
                     <a href="{% url 'users:userupdate' utente.id%}" class="btn btn-primary">Modifica profilo</a>
                     <a href="{% url 'users:userlist' %}" class="btn btn-secondary">Torna alla lista utenti</a>

@@ -5,6 +5,9 @@ from django.core.validators import EmailValidator
 from shop.models import *
 from sell.models import *
 
+
+# Form per la registrazione utente
+
 class UserRegistrationForm(UserCreationForm):
     numero_di_telefono = forms.CharField(min_length=10, max_length=10, required=True)
     email = forms.EmailField(max_length=254, required=True, validators=[EmailValidator()])
@@ -12,6 +15,7 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'numero_di_telefono', 'username', 'password1', 'password2',]
+
 
 # Form per la selezione del Brand 
 

@@ -6,7 +6,6 @@ def erase_db():
     Brand.objects.all().delete()
     Prodotto.objects.all().delete()
 
-
 def init_database():
 
     if len(Brand.objects.all()) != 0:
@@ -75,6 +74,7 @@ def init_database():
             new_product.data_pub = timezone.now()
             new_product.save()
 
+            #Creazione dettagli
             for m in memorie:
                 for c in condizioni:
                     new_dettaglio = Dettagli()
@@ -102,40 +102,8 @@ def init_database():
                         new_prezzo *= 0.9
 
                     new_dettaglio.prezzo = new_prezzo
-                    new_dettaglio.quantita = random.randint(0,5)
+                    new_dettaglio.quantita = random.randint(0, 5) #Aggiungi in modo random da 0 a 5 quantità
                     new_dettaglio.save()
-
-
-
-
-
-
-
-
-
-            '''
-            #Creazione prodotto singolo [prodotto, condizione, quantità, memoria prezzo in base alla condizione]
-            for d in condizioni:
-                for m in memorie:
-                    new_dettaglio = Dettagli()
-                    new_dettaglio.prodotto = new_product
-                    new_dettaglio.condizione = condizioni[d+1]
-                    new_prezzo =  products[b]["prezzo"][p]
-                    new_dettaglio.memoria[m+1]
-
-                    if(m == 0):
-                        print(memorie[0])
-
-                    if(new_dettaglio.condizione == 'new'):
-                        new_dettaglio.prezzo = new_prezzo
-                    elif(new_dettaglio.condizione == 'used'):
-                        new_dettaglio.prezzo = new_prezzo*0.8
-                    else:
-                        new_dettaglio.prezzo = new_prezzo*0.9
-
-                    new_dettaglio.quantita = random.randint(0,3)
-                    new_dettaglio.save()
-                '''
 
     #Test funzionamento
     print("[LOG] Brands: " + str(Brand.objects.all()))

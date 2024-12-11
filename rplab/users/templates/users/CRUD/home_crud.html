@@ -10,8 +10,9 @@
             <p class="text-center">Scegli un'operazione e seleziona il modello su cui operare.</p>
             
             <div class="row justify-content-center mt-4">
-                <!-- Form per selezionare l'operazione -->
                 <form method="get" action="{% url 'users:gestione' %}" class="col-md-6">
+
+                    <!-- Form per selezionare l'operazione -->
                     <div class="mb-3">
                         <label for="operazione" class="form-label">Operazione</label>
                         <select class="form-select" id="operazione" name="operazione" required>
@@ -21,7 +22,8 @@
                             <option value="delete">Elimina</option>
                         </select>
                     </div>
-
+                    
+                    <!-- Form per selezionare il modello -->
                     <div class="mb-3">
                         <label for="modello" class="form-label">Modello</label>
                         <select class="form-select" id="modello" name="modello" required>

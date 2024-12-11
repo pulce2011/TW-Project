@@ -1,8 +1,12 @@
 {% extends 'users/dashboard_base.html' %}
 
 {% block dashboard %}
+
+    <!-- Lista di tutti gli utenti -->
     <div class="container mt-5 text-center">
         <h2 class="mb-4">Lista degli Utenti</h2>
+
+        <!-- Tabella -->
         <table class="table table-bcomandaed">
             <thead>
                 <tr>
@@ -12,6 +16,7 @@
                     <th>Dettagli</th>
                 </tr>
             </thead>
+            
             <tbody>
                 {% for utente in utente %}
                 <tr>
