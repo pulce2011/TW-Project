@@ -1,0 +1,51 @@
+<div class="mt-5 text-center">
+    {% if user.is_staff or user.is_superuser %}
+
+        {% if title %}
+            <h3>{{title}}</h3>
+        {% else %}
+            <h3>Comande attive:</h3>
+        {% endif %}
+
+        {% if comande_attive %}
+            <table class="table table-bcomandaed">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Brand</th>
+                        <th>Modello</th>
+                        <th>Condizione</th>
+                        <th>Memoria</th>
+                        <th>Prezzo Totale</th>
+                        <th>Data</th>
+                        <th>Stato</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for comanda in comande_attive %}
+                    <tr>
+                        <td>{{ comanda.pk }}</td>
+                        <td>{{ comanda.dettagli.prodotto.modello.nome }}</td>
+                        <td>{{ comanda.dettagli.prodotto.nome }}</td>
+                        <td>{{ comanda.dettagli.condizione }}</td>
+                        <td>{{ comanda.dettagli.memoria }} GB</td>
+                        <td>{{ comanda.dettagli.prezzo }} €</td>
+                        <td>{{ comanda.data_acquisto }}</td>
+                        {% if not comanda.attiva %}
+                            <td>✔</td>
+                        {% else %}
+                            <td>⏳</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+            <p>Non ci sono ordini attivi.</p>
+        {% endif %}
+        
+    {% endif %}
+    
+</div>

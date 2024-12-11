@@ -1,0 +1,37 @@
+<div class="mt-5 text-center">
+    {% if not user.is_staff and not user.is_superuser %}
+        <h3>I tuoi ordini</h3>
+        {% if comande %}
+            <table class="table table-bcomandaed">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Brand</th>
+                        <th>Modello</th>
+                        <th>Condizione</th>
+                        <th>Memoria</th>
+                        <th>Prezzo Totale</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comanda in comande %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ comanda.dettagli.prodotto.modello.nome }}</td>
+                        <td>{{ comanda.dettagli.prodotto.nome }}</td>
+                        <td>{{ comanda.dettagli.condizione }}</td>
+                        <td>{{ comanda.dettagli.memoria }} GB</td>
+                        <td>{{ comanda.dettagli.prezzo }} €</td>
+                        <td>{{ comanda.data_acquisto }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Non hai effettuato ordini.</p>
+        {% endif %}
+
+    {% endif %}
+    
+</div>

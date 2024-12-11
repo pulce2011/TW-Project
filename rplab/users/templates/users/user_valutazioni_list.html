@@ -1,0 +1,73 @@
+<div class="mt-5 text-center">
+    {% if not user.is_staff and not user.is_superuser %}
+        <h3>Le tue valutazioni</h3>
+        {% if valutazioni %}
+            <table class="table table-bcomandaed">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Brand</th>
+                        <th>Prodotto</th>
+                        <th>Memoria</th>
+                        <th>Condizione</th>
+                        <th>Schermo Rotto</th>
+                        <th>Back Rotto</th>
+                        <th>Stato Batteria</th>
+                        <th>Bloccato</th>
+                        <th>Commento</th>
+                        <th>Valore</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for valutazione in valutazioni %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ valutazione.prodotto.modello.nome }}</td>
+                        <td>{{ valutazione.prodotto.nome }}</td>
+                        <td>{{ valutazione.memoria }} GB</td>
+                        <td>{{ valutazione.condizione }}
+
+                        {% if valutazione.schermo_rotto %}
+                            <td>✔</td>
+                        {% else %}
+                            <td>❌</td>
+                        {% endif %}
+
+                        {% if valutazione.back_rotto %}
+                            <td>✔</td>
+                        {% else %}
+                            <td>❌</td>
+                        {% endif %}
+                        
+                        <td>{{ valutazione.stato_batteria }} %</td>
+
+                        {% if valutazione.bloccato %}
+                            <td>✔</td>
+                        {% else %}
+                            <td>❌</td>
+                        {% endif %}
+                        
+                        {% if valutazione.commento %}
+                            <td><a class="btn-primary" type="button"
+                                data-bs-toggle="popover" data-bs-placement="right"
+                                data-bs-custom-class="custom-popover"
+                                data-bs-title="Commento"
+                                data-bs-content="{{valutazione.commento}}">
+                                Leggi
+                            </a></td>
+                        {% else %}
+                        <td>No</td>
+                        {% endif %}
+
+                        <td>{{ valutazione.valore }} €</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Non hai nessuna valutazione.</p>
+        {% endif %}
+
+    {% endif %}
+    
+</div>

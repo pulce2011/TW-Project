@@ -1,149 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'users/dashboard_base.html' %}
 
-{% block head %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/colors.css' %}">
-{% endblock %}
+{% block dashboard %}
 
-{% block content%}
+    {% include 'users/user_orders_list.html' %}
 
-    {% if user %}
+    {% include 'users/staff_orders_list.html' %}
 
+    {% if user.is_admin or user.is_staff%}
         <div class="text-center">
-            <h2>Benvenuto/a, <strong>{{user.first_name}} {{user.last_name}}</strong>!</h2>
-            <p>Questa è la tua dashboard personale.</p>
-            {% if user.is_superuser%}
-                <h5><i>Sei un utente <strong>superuser</strong></i></h5>
-            {% elif user.is_staff %}
-                <h5><i>Sei un utente <strong>staff</strong></i></h5>
-            {% endif %}
-        </div>
-
-        <div class="mt-5 text-center">
-            {% if not user.is_staff and not user.is_superuser %}
-                <h3>I tuoi ordini</h3>
-                {% if comande %}
-                    <table class="table table-bcomandaed">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Brand</th>
-                                <th>Modello</th>
-                                <th>Condizione</th>
-                                <th>Memoria</th>
-                                <th>Prezzo Totale</th>
-                                <th>Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for comanda in comande %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ comanda.dettagli.prodotto.modello.nome }}</td>
-                                <td>{{ comanda.dettagli.prodotto.nome }}</td>
-                                <td>{{ comanda.dettagli.condizione }}</td>
-                                <td>{{ comanda.dettagli.memoria }} GB</td>
-                                <td>{{ comanda.dettagli.prezzo }} €</td>
-                                <td>{{ comanda.data_acquisto }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>Non hai effettuato ordini.</p>
-                {% endif %}
-
-            {% endif %}
-            
-        </div>
-
-        <div class="mt-5 text-center">
-            {% if not user.is_staff and not user.is_superuser %}
-                <h3>Le tue valutazioni</h3>
-                {% if valutazioni %}
-                    <table class="table table-bcomandaed">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Brand</th>
-                                <th>Prodotto</th>
-                                <th>Memoria</th>
-                                <th>Condizione</th>
-                                <th>Schermo Rotto</th>
-                                <th>Back Rotto</th>
-                                <th>Stato Batteria</th>
-                                <th>Bloccato</th>
-                                <th>Commento</th>
-                                <th>Valore</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for valutazione in valutazioni %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ valutazione.prodotto.modello.nome }}</td>
-                                <td>{{ valutazione.prodotto.nome }}</td>
-                                <td>{{ valutazione.memoria }} GB</td>
-                                <td>{{ valutazione.condizione }}
-
-                                {% if valutazione.schermo_rotto %}
-                                    <td>✔</td>
-                                {% else %}
-                                    <td>❌</td>
-                                {% endif %}
-
-                                {% if valutazione.back_rotto %}
-                                    <td>✔</td>
-                                {% else %}
-                                    <td>❌</td>
-                                {% endif %}
-                                
-                                <td>{{ valutazione.stato_batteria }} %</td>
-
-                                {% if valutazione.bloccato %}
-                                    <td>✔</td>
-                                {% else %}
-                                    <td>❌</td>
-                                {% endif %}
-                                
-                                {% if valutazione.commento %}
-                                    <td><a class="btn-primary" type="button"
-                                        data-bs-toggle="popover" data-bs-placement="right"
-                                        data-bs-custom-class="custom-popover"
-                                        data-bs-title="Commento"
-                                        data-bs-content="{{valutazione.commento}}">
-                                        Leggi
-                                    </a></td>
-                                {% else %}
-                                <td>No</td>
-                                {% endif %}
-
-                                <td>{{ valutazione.valore }} €</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>Non hai nessuna valutazione.</p>
-                {% endif %}
-
-            {% endif %}
-            
-        </div>
-
-        <div class="mt-5 text-center">
-            <a href="{% url 'shop:homeshop' %}" class="btn btn-primary">Acquista</a>
-            <a href="{% url 'sell:homesell' %}" class="btn btn-primary">Vendi</a>
-            <a href="{% url 'users:logout' %}" class="btn btn-danger">Logout</a>
-
-            {% if user.is_staff or user.is_superuser%}
-                <a href="{% url 'shop:gestione' %}" class="btn btn-success">Gestione</a>
-            {% endif %}
+            <a href="{% url 'users:allcomande' %}" class="btn btn-outline-primary">Vedi tutte...</a>
         </div>
     {% endif %}
 
+    <!-- Separator -->
+    <div class="separator"></div>
 
-    <!-- Script Popper per funzionamento "Leggi commento." -->
-    <script src="{% static 'js/popper.js' %}"></script>
+    {% include 'users/user_valutazioni_list.html' %}
 
+    {% include 'users/staff_valutazioni_list.html' %}
+
+    {% if user.is_admin or user.is_staff%}
+        <div class="text-center">
+            <a href="{% url 'users:allvalutazioni' %}" class="btn btn-outline-primary">Vedi tutte...</a>
+        </div>
+    {% endif %}
+    
 {% endblock %}

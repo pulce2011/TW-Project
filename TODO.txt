@@ -3,8 +3,10 @@ PRIORITY:
 - Calcolare prezzo automaticamente per valutazioni di vendita
 - Staff deve poter vedere tutte le valutazioni di vendita e segnarle come valide o non valide
 
+
 OTHERS:
 - Creare pagina 404 ed errori simili (quando si acquista iphone senza disponibilità)
+
 
 FACOLTATIVO:
 - aggiungere colore e capacità ai modelli

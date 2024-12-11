@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/colors.css' %}">
+{% endblock %}
+
+{% block content%}
+
+    {% if user %}
+
+        <div class="text-center">
+            {% if user.first_name and user.last_name%}
+                <h2>Benvenuto/a, <strong>{{user.first_name}} {{user.last_name}}</strong>!</h2>
+            {% else %}
+                <h2>Benvenuto/a, <strong>{{user.username}}</strong>!</h2>
+            {% endif %}
+
+            <p>Questa è la tua dashboard personale.</p>
+
+            {% if user.is_superuser%}
+                <h5><i>Sei un utente <strong>superuser</strong></i></h5>
+            {% elif user.is_staff %}
+                <h5><i>Sei un utente <strong>staff</strong></i></h5>
+            {% endif %}
+        </div>
+
+        {% block dashboard%}
+
+        {% endblock %}
+
+        <div class="mt-5 text-center">
+            <a href="{% url 'shop:homeshop' %}" class="btn btn-primary">Acquista</a>
+            <a href="{% url 'sell:homesell' %}" class="btn btn-primary">Vendi</a>
+            <a href="{% url 'users:logout' %}" class="btn btn-danger">Logout</a>
+
+            {% if user.is_staff or user.is_superuser %}
+                <a href="{% url 'shop:gestione' %}" class="btn btn-success">Gestione</a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+
+    <!-- Script Popper per funzionamento "Leggi commento." -->
+    <script src="{% static 'js/popper.js' %}"></script>
+
+{% endblock %}

@@ -23,6 +23,7 @@ class Valutazione(models.Model):
     bloccato = models.BooleanField(default=False, help_text="Il telefono è bloccato dalla casa produttrice?")
     commento = models.CharField(blank=True, null=True, max_length=200, help_text="Aggiungi ulteriori commenti sullo stato del dispositivo")
     valore = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, help_text="Valore stimato del dispositivo")
+    attiva = models.BooleanField(blank=False, null=False, default=True)
 
     def __str__(self):
         return f"Valutazione di {self.prodotto} - Utente: *{self.utente.username}*"
