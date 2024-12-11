@@ -1,12 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from decimal import Decimal
 from .forms import *
 from .models import *
+
+
+# Vista per la HomeSell
 
 def home(request):
     return render(request, "sell/home_sell.html")
 
 
+# Vista per il form di valutazione
+
+@login_required
 def valutazione(request):
     if request.method == 'POST':
         form = ValutazioneForm(request.POST)
@@ -50,7 +57,7 @@ def valutazione(request):
             valutazione.valore = prezzo
 
             valutazione.save()
-            return redirect('sell:success')  # Reindirizza dopo il salvataggio
+            return redirect('sell:success', valutazione.valore)  # Reindirizza dopo il salvataggio
     else:
         form = ValutazioneForm()
 
@@ -60,5 +67,9 @@ def valutazione(request):
     }
     return render(request, 'sell/valutazione.html', context)
 
-def success(request):
-    return render(request, 'sell/success.html')
+
+# Vista per la pagina di successo
+
+def success(request, valutazione):
+    valutazione = round(Decimal(valutazione), 2)
+    return render(request, 'sell/success.html', {"prezzo":valutazione})
