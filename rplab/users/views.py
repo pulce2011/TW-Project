@@ -95,3 +95,16 @@ def crud_operations(request):
         return redirect('users:' + url_name)
     else:
         return render(request, "users/CRUD/home_crud.html")
+
+
+#Classe per la modifica di un utente
+
+class UserUpdateView(UpdateView):
+    model = User
+    template_name = 'users/modifica_utente.html'
+    fields = ['username', 'first_name', 'last_name', 'email']
+    context_object_name = 'utente'
+
+    def get_success_url(self):
+        # Dopo la modifica, ritorna alla lista utenti
+        return reverse_lazy('users:userlist')

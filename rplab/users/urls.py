@@ -11,8 +11,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('comande/', views.all_comande_staff, name='allcomande'),
     path('valutazioni/', views.all_valutazioni_staff, name='allvalutazioni'),
-    path('listautenti/', views.UserListView.as_view(), name='userlist'),
+    path('', views.UserListView.as_view(), name='userlist'),
     path('user/<int:pk>/', views.UserDetailView.as_view(), name='userdetail'),
+    path('users/<int:pk>/edit/', views.UserUpdateView.as_view(), name='userupdate'),
 
     # CRUD HomePage
     path('gestione', views.crud_operations, name="gestione"),

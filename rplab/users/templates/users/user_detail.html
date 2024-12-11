@@ -50,8 +50,8 @@
 
                 <!-- Altri dettagli personalizzati -->
                 <div class="mt-4">
-                    <a href="#" class="btn btn-primary">Modifica profilo</a>
-                    <a href="#" class="btn btn-secondary">Torna alla lista utenti</a>
+                    <a href="{% url 'users:userupdate' utente.id%}" class="btn btn-primary">Modifica profilo</a>
+                    <a href="{% url 'users:userlist' %}" class="btn btn-secondary">Torna alla lista utenti</a>
                 </div>
             </div>
         </div>
