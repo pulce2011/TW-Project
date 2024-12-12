@@ -63,7 +63,7 @@ def valutazione(request):
 
     context = {
         'prodotti': Prodotto.objects.all(),
-        'form': form,
+        'form':form,
     }
     return render(request, 'sell/valutazione.html', context)
 

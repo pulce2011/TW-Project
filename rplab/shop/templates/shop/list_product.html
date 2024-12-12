@@ -19,8 +19,11 @@
                     {% for prodotto in prodotti %} <!-- Per ogni prodotto esistente -->
                         <div class="col-md-4">
                             <div class="card product-card mb-4 shadow-sm">
-                                <img height="auto" src="{{prodotto.immagine.url}}" class="card-img-top" alt="{{ prodotto.nome }}">
                                 
+                                {% if prodotto.immagine %}
+                                    <img height="auto" src="{{prodotto.immagine.url}}" class="card-img-top" alt="{{ prodotto.nome }}">
+                                {% endif %}
+
                                 <div class="card-body">
                                     <h5 class="card-title">{{prodotto.modello.nome}} {{ prodotto.nome }}</h5>
                                     <p class="desc card-text text-muted">{{ prodotto.descrizione }}</p>

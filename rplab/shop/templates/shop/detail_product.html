@@ -18,7 +18,10 @@
         <div class="row">
 
             <div class="col-md-6">
-                <img src="{{prodotto.immagine.url}}" class="img-fluid" alt="{{ prodotto.nome }}">
+
+                {% if prodotto.immagine%}
+                    <img src="{{prodotto.immagine.url}}" class="img-fluid" alt="{{ prodotto.nome }}">
+                {% endif %}
             </div>
 
             <div class="col-md-6">

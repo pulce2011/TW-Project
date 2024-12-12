@@ -106,5 +106,5 @@ def init_database():
                     new_dettaglio.save()
 
     #Test funzionamento
-    print("[LOG] Brands: " + str(Brand.objects.all()))
-    print("[LOG] Prodotti: " + str(Prodotto.objects.all()))
+    #print("[LOG] Brands: " + str(Brand.objects.all()))
+    #print("[LOG] Prodotti: " + str(Prodotto.objects.all()))
