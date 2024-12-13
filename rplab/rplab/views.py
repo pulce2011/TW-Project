@@ -25,12 +25,6 @@ def servizi(request):
 def about(request):
 
     team = [
-        {'nome':'Mario Rossi', 'ruolo':'Fondatore e CEO', 'descrizione':'Responsabile della visione e strategia aziendale.'},
-        {'nome':'Giulia Bianchi', 'ruolo':'Responsabile Marketing','descrizione': 'Coordina tutte le attività di promozione e pubblicità.'},
-        {'nome':'Luca Verdi', 'ruolo':'Tecnico Senior', 'descrizione': 'Specializzato in riparazioni e assistenza tecnica.'},
-    ]
-
-    team = [
         {'nome':'Irene Porcu', 'ruolo':'Fondatore e CEO', 'descrizione':'Responsabile della visione e strategia aziendale.'},
         {'nome':'Alessandro Doglia', 'ruolo':'Responsabile Marketing & Management','descrizione': 'Coordina tutte le attività di promozione, pubblicità e organizzazione.'},
         {'nome':'Flavio Roveri', 'ruolo':'Tecnico Senior', 'descrizione': 'Specializzato in riparazioni e microsaldatura a stagno'},
