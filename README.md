@@ -2,7 +2,7 @@
 
 Applicazione django per la vendita e la valutazione di telefoni cellulari nuovi, usati e ricondizionati.
 
-## Installazione del programma
+## Installazione
 
 1. Clona la repository corrente ed entra nella cartella del progetto.
 ```
