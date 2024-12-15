@@ -24,7 +24,7 @@ pip install django
 ```
 python manage.py migrate
 ```
-7. Avviare il server:
+6. Avviare il server:
 ```
 python manage.py runserver
 ```
