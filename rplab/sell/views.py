@@ -39,7 +39,7 @@ def valutazione(request):
             if(valutazione.schermo_rotto): #Se schermo è rotto, prezzo -50%
                 prezzo *= Decimal(0.5)
             
-            if(valutazione.back_rotto): #Se back è rotto, prezzo - 0%
+            if(valutazione.back_rotto): #Se back è rotto, prezzo - 30%
                 prezzo *= Decimal(0.7)
 
             if(valutazione.stato_batteria >= 95 and valutazione.stato_batteria <= 100): #Se stato batteria compreso tra 95 e 100, prezzo uguale
