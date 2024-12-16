@@ -8,7 +8,7 @@ Applicazione django per la vendita e la valutazione di telefoni cellulari nuovi,
 ```
 git clone <url_repository> && cd TW-Project/rplab
 ```
-2. Entrare nella cartella del progetto e verificare di avere installato python e le sue impostazioni (pip)
+2. Verificare di avere installato python e le sue impostazioni (pip)
 ```
 python --version
 ```
